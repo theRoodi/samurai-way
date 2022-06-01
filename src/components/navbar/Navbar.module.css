@@ -8,8 +8,3 @@
     text-decoration: none;
     font-weight: bold;
 }
-
-.item a.active {
-    color: rgb(12, 12, 12);
-    font-weight: 900;
-}
