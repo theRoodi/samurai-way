@@ -1,0 +1,23 @@
+.dialogs {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogItems a{
+    color: #E5E5E5;
+}
+.dialogItems a:hover{
+    color: #000000;
+}
+
+.dialog{
+
+}
+
+.messages{
+
+}
+.message{
+
+}
