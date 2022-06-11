@@ -27,18 +27,33 @@ const Messages = (props : MessageType) => {
 
 
 const Dialogs = (props: any) => {
+
+    const dialogsItem:Array<DialogType> = [
+        {id: 1, name: 'Igor'},
+        {id: 2, name: 'Max'},
+        {id: 3, name: 'Alex'},
+        {id: 4, name: 'Dave'},
+    ]
+
+    const messagesItem:Array<MessageType> = [
+        {message: 'Hey'},
+        {message: 'How are you?'},
+        {message: 'Fine'},
+    ]
+
+
     return (
         <div className={style.dialogs}>
             <div className={style.dialogItems}>
-                <DialogItem name={'Igor'} id={1} />
-                <DialogItem name={'Dima'} id={2} />
-                <DialogItem name={'Victor'} id={3} />
-                <DialogItem name={'Ignat'} id={4} />
+                <DialogItem name={dialogsItem[0].name} id={dialogsItem[0].id} />
+                <DialogItem name={dialogsItem[1].name} id={dialogsItem[1].id} />
+                <DialogItem name={dialogsItem[2].name} id={dialogsItem[2].id} />
+                <DialogItem name={dialogsItem[3].name} id={dialogsItem[3].id} />
             </div>
             <div className={style.messages}>
-                <Messages message={'Hey'} />
-                <Messages message={'How are you?'} />
-                <Messages message={'Fine!'} />
+                <Messages message={messagesItem[0].message} />
+                <Messages message={messagesItem[1].message} />
+                <Messages message={messagesItem[2].message} />
             </div>
         </div>
     )
