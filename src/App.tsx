@@ -5,8 +5,11 @@ import Header from './components/header/Header'
 import Navbar from './components/navbar/Navbar';
 import Profile from './components/profile/Profile';
 import Dialogs from './components/dialogs/Dialogs';
+import {state} from './redux/state';
 
-const App = () => {
+const App = ( ) => {
+
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -14,8 +17,8 @@ const App = () => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path="/dialogs" element={<Dialogs/>}/>
-                        <Route path="/profile" element={<Profile/>}/>
+                        <Route path="/dialogs" element={<Dialogs dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages}/>}/>
+                        <Route path="/profile" element={<Profile posts={state.profilePage.posts}/>}/>
                     </Routes>
                 </div>
             </div>
