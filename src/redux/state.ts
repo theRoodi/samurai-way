@@ -1,3 +1,5 @@
+import {rerender} from '../render';
+
 export type MessageType = {
     id:number
     message : string
@@ -24,8 +26,8 @@ export type RootStateType = {
 }
 
 export const state:RootStateType = {
-    dialogsPage:{
-        dialogs : [
+    dialogsPage: {
+        dialogs: [
             {id: 1, name: 'Igor'},
             {id: 2, name: 'Max'},
             {id: 3, name: 'Alex'},
@@ -46,3 +48,14 @@ export const state:RootStateType = {
     }
 
 }
+
+export const addPost = (post : string) => {
+    const newPost:PostType = {
+        id: 5,
+        message: post,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost)
+    rerender()
+}
+

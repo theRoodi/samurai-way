@@ -1,20 +1,33 @@
-import React from 'react';
+import React, {ChangeEvent, ChangeEventHandler, useState} from 'react';
 import Post from './Post/Post';
 import style from './MyPosts.module.css';
-import {ProfilePageType} from '../../../redux/state';
+import {ProfilePagesType} from '../Profile';
 
 
-const MyPosts = (props : ProfilePageType) => {
+const MyPosts = (props : ProfilePagesType) => {
     const postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id}/>)
+
+    let [newPost, setNewPost] = useState<string>('')
+
+    const newPostChange = (event:ChangeEvent<HTMLTextAreaElement>) => {
+        setNewPost(event.currentTarget.value)
+    }
+
+    const addPost = () => {
+        props.addPost(newPost)
+        setNewPost('')
+    }
 
     return (
         <div>
             <div className={style.posts}>
                 my posts
                 <div>
-                    <div><textarea></textarea></div>
                     <div>
-                        <button>Send</button>
+                        <textarea value={newPost} onChange={newPostChange}></textarea>
+                    </div>
+                    <div>
+                        <button onClick={addPost}>Send</button>
                     </div>
 
                 </div>
