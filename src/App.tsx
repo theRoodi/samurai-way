@@ -5,7 +5,7 @@ import Header from './components/header/Header'
 import Navbar from './components/navbar/Navbar';
 import Profile from './components/profile/Profile';
 import Dialogs from './components/dialogs/Dialogs';
-import {state, addPost} from './redux/state';
+import {state, addPost, addMessage} from './redux/state';
 
 const App = () => {
 
@@ -18,7 +18,8 @@ const App = () => {
                     <Routes>
                         <Route path="/dialogs" element={<Dialogs
                             dialogs={state.dialogsPage.dialogs}
-                            messages={state.dialogsPage.messages}/>}/>
+                            messages={state.dialogsPage.messages}
+                            addMessage={addMessage}/>}/>
                         <Route path="/profile" element={<Profile
                             posts={state.profilePage.posts}
                             addPost={addPost}/>}/>

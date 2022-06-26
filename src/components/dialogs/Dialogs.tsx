@@ -1,10 +1,16 @@
 import style from './Dialogs.module.css'
 import DialogItem from './dialog-item/DialogItem';
 import Message from './message/Message';
-import {DialogsPageType} from '../../redux/state';
+import { DialogType, MessageType} from '../../redux/state';
 import {ChangeEvent, useState} from 'react';
 
-const Dialogs = (props: DialogsPageType) => {
+type DialogPropsType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    addMessage: (message: string) => void
+}
+    
+const Dialogs = (props: DialogPropsType) => {
 
     const dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} />)
 
@@ -17,8 +23,8 @@ const Dialogs = (props: DialogsPageType) => {
     }
 
     const addMessage = () => {
-        setMessage(message)
-        alert(message)
+        props.addMessage(message)
+        setMessage('')
     }
 
 

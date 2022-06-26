@@ -59,3 +59,12 @@ export const addPost = (post : string) => {
     rerender()
 }
 
+export const addMessage = (message : string) => {
+    const newMessage:MessageType = {
+        id: 5,
+        message: message
+    }
+    state.dialogsPage.messages.push(newMessage)
+    rerender()
+}
+
