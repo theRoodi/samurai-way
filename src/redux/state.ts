@@ -1,4 +1,11 @@
-import {rerender} from '../render';
+let rerender = () => {
+    console.log('state changed')
+}
+
+
+export const subscribe = (callback : () => void) => {
+    rerender = callback
+}
 
 export type MessageType = {
     id:number

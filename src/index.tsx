@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import {rerender} from './render';
+import {subscribe} from './redux/state';
 
+subscribe(rerender)
 rerender()
