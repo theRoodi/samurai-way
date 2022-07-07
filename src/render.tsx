@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {addPost, RootStateType} from './redux/state';
+import {store} from './redux/state';
 
 export const rerender = () => {
-    ReactDOM.render(<App/>, document.getElementById('root'));
+    ReactDOM.render(<App store={store}/>, document.getElementById('root'));
 }

@@ -1,15 +1,10 @@
-let rerender = () => {
-    console.log('state changed')
-}
+import post from '../components/profile/MyPosts/Post/Post';
 
 
-export const subscribe = (callback : () => void) => {
-    rerender = callback
-}
 
 export type MessageType = {
-    id:number
-    message : string
+    id: number
+    message: string
 }
 export type DialogType = {
     id: number
@@ -32,46 +27,66 @@ export type RootStateType = {
     dialogsPage: DialogsPageType
 }
 
-export const state:RootStateType = {
-    dialogsPage: {
-        dialogs: [
-            {id: 1, name: 'Igor'},
-            {id: 2, name: 'Max'},
-            {id: 3, name: 'Alex'},
-            {id: 4, name: 'Dave'},
-        ],
-        messages: [
-            {id: 1, message: 'Hey'},
-            {id: 2, message: 'How are you?'},
-            {id: 3, message: 'Fine'},
-        ]
+export type StoreType = {
+    _state: RootStateType
+    addPost: (post: string) => void
+    addMessage: (message: string) => void
+    _rerender: () => void
+    subscribe: (callback: () => void) => void
+    getState: () => RootStateType
+}
+
+export const store: StoreType = {
+    _state: {
+        dialogsPage: {
+            dialogs: [
+                {id: 1, name: 'Igor'},
+                {id: 2, name: 'Max'},
+                {id: 3, name: 'Alex'},
+                {id: 4, name: 'Dave'},
+            ],
+            messages: [
+                {id: 1, message: 'Hey'},
+                {id: 2, message: 'How are you?'},
+                {id: 3, message: 'Fine'},
+            ]
+        },
+        profilePage: {
+            posts: [
+                {id: 1, message: 'post 1', likesCount: 10},
+                {id: 2, message: 'post 2', likesCount: 20},
+                {id: 3, message: 'post 3', likesCount: 30},
+            ]
+        }
     },
-    profilePage: {
-        posts: [
-            {id: 1, message: 'post 1', likesCount: 10},
-            {id: 2, message: 'post 2', likesCount: 20},
-            {id: 3, message: 'post 3', likesCount: 30},
-        ]
-    }
+    addPost(post: string){
+        const newPost: PostType = {
+            id: 5,
+            message: post,
+            likesCount: 0
+        }
+        this._state.profilePage.posts.push(newPost)
+        this._rerender()
+    },
+    addMessage(message: string) {
+        const newMessage: MessageType = {
+            id: 5,
+            message: message
+        }
+        this._state.dialogsPage.messages.push(newMessage)
+        this._rerender()
+    },
+    _rerender() {
+        console.log('state changed')
+    },
 
+    subscribe(callback ) {
+        this._rerender = callback
+    },
+    getState() {
+        return this._state
+    }
 }
 
-export const addPost = (post : string) => {
-    const newPost:PostType = {
-        id: 5,
-        message: post,
-        likesCount: 0
-    }
-    state.profilePage.posts.push(newPost)
-    rerender()
-}
 
-export const addMessage = (message : string) => {
-    const newMessage:MessageType = {
-        id: 5,
-        message: message
-    }
-    state.dialogsPage.messages.push(newMessage)
-    rerender()
-}
 

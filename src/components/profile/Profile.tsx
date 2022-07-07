@@ -2,7 +2,7 @@ import React from 'react';
 import style from './Profile.module.css'
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {addPost, PostType} from '../../redux/state';
+import {PostType} from '../../redux/state';
 
 export type ProfilePagesType = {
     posts: PostType[]
@@ -15,7 +15,7 @@ const Profile = (props: ProfilePagesType) => {
     return (
         <div className={style.content}>
             <ProfileInfo cover={cover} desc={desc} />
-            <MyPosts posts={props.posts} addPost={addPost} />
+            <MyPosts posts={props.posts} addPost={props.addPost} />
         </div>
     )
 }

@@ -5,9 +5,15 @@ import Header from './components/header/Header'
 import Navbar from './components/navbar/Navbar';
 import Profile from './components/profile/Profile';
 import Dialogs from './components/dialogs/Dialogs';
-import {state, addPost, addMessage} from './redux/state';
+import {StoreType} from './redux/state';
 
-const App = () => {
+type PropsType = {
+    store: StoreType
+}
+
+const App = (props:PropsType) => {
+
+    const state = props.store.getState()
 
     return (
         <BrowserRouter>
@@ -19,10 +25,10 @@ const App = () => {
                         <Route path="/dialogs" element={<Dialogs
                             dialogs={state.dialogsPage.dialogs}
                             messages={state.dialogsPage.messages}
-                            addMessage={addMessage}/>}/>
+                            addMessage={props.store.addMessage.bind(props.store)}/>}/>
                         <Route path="/profile" element={<Profile
                             posts={state.profilePage.posts}
-                            addPost={addPost}/>}/>
+                            addPost={props.store.addPost.bind(props.store)}/>}/>
                     </Routes>
                 </div>
             </div>
