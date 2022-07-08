@@ -1,20 +1,20 @@
 import style from './Dialogs.module.css'
 import DialogItem from './dialog-item/DialogItem';
 import Message from './message/Message';
-import { DialogType, MessageType} from '../../redux/state';
+import {DialogType, MessageType} from '../../redux/state';
 import {ChangeEvent, useState} from 'react';
 
 type DialogPropsType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    addMessage: (message: string) => void
+    dispatch: (action: any) => void
 }
-    
+
 const Dialogs = (props: DialogPropsType) => {
 
-    const dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} />)
+    const dialogsElements = props.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>)
 
-    const messagesElements = props.messages.map(m => <Message message={m.message} id={m.id}/>)
+    const messagesElements = props.messages.map(m => <Message key={m.id} message={m.message} id={m.id}/>)
 
     let [message, setMessage] = useState('')
 
@@ -23,7 +23,7 @@ const Dialogs = (props: DialogPropsType) => {
     }
 
     const addMessage = () => {
-        props.addMessage(message)
+        props.dispatch({type: 'ADD-MESSAGE', message})
         setMessage('')
     }
 
@@ -46,4 +46,4 @@ const Dialogs = (props: DialogPropsType) => {
     )
 }
 
-export default  Dialogs
+export default Dialogs

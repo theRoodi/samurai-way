@@ -11,7 +11,7 @@ type PropsType = {
     store: StoreType
 }
 
-const App = (props:PropsType) => {
+const App = (props: PropsType) => {
 
     const state = props.store.getState()
 
@@ -25,10 +25,10 @@ const App = (props:PropsType) => {
                         <Route path="/dialogs" element={<Dialogs
                             dialogs={state.dialogsPage.dialogs}
                             messages={state.dialogsPage.messages}
-                            addMessage={props.store.addMessage.bind(props.store)}/>}/>
+                            dispatch={props.store.dispatch.bind(props.store)}/>}/>
                         <Route path="/profile" element={<Profile
                             posts={state.profilePage.posts}
-                            addPost={props.store.addPost.bind(props.store)}/>}/>
+                            dispatch={props.store.dispatch.bind(props.store)}/>}/>
                     </Routes>
                 </div>
             </div>

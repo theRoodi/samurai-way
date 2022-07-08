@@ -6,7 +6,7 @@ import {PostType} from '../../redux/state';
 
 export type ProfilePagesType = {
     posts: PostType[]
-    addPost: (post: string) => void
+    dispatch: (action: any) => void
 }
 
 const Profile = (props: ProfilePagesType) => {
@@ -15,7 +15,7 @@ const Profile = (props: ProfilePagesType) => {
     return (
         <div className={style.content}>
             <ProfileInfo cover={cover} desc={desc} />
-            <MyPosts posts={props.posts} addPost={props.addPost} />
+            <MyPosts posts={props.posts} dispatch={props.dispatch} />
         </div>
     )
 }

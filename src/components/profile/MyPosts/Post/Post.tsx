@@ -2,11 +2,11 @@ import React from 'react';
 import style from './Post.module.css'
 import {PostType} from '../../../../redux/state';
 
-const Post:React.FC<PostType> = (props) => {
+const Post: React.FC<PostType> = (props) => {
     return (
         <div>
             <div className={style.item}>
-                <img src='https://www.svgrepo.com/show/2750/boy.svg'/>
+                <img src="https://www.svgrepo.com/show/2750/boy.svg"/>
                 {props.message}
                 <div>
                     <span>{props.likesCount} likes</span>

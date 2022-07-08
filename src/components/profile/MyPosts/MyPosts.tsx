@@ -1,20 +1,23 @@
-import React, {ChangeEvent, ChangeEventHandler, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import Post from './Post/Post';
 import style from './MyPosts.module.css';
 import {ProfilePagesType} from '../Profile';
 
 
-const MyPosts = (props : ProfilePagesType) => {
-    const postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id}/>)
+const MyPosts = (props: ProfilePagesType) => {
+    const postsElements = props.posts.map(p => <Post key={p.id}
+                                                     message={p.message}
+                                                     likesCount={p.likesCount}
+                                                     id={p.id}/>)
 
     let [newPost, setNewPost] = useState<string>('')
 
-    const newPostChange = (event:ChangeEvent<HTMLTextAreaElement>) => {
+    const newPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setNewPost(event.currentTarget.value)
     }
 
     const addPost = () => {
-        props.addPost(newPost)
+        props.dispatch({type: 'ADD-POST', newPost})
         setNewPost('')
     }
 

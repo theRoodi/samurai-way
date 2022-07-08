@@ -1,7 +1,6 @@
 import post from '../components/profile/MyPosts/Post/Post';
 
 
-
 export type MessageType = {
     id: number
     message: string
@@ -29,11 +28,14 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType
-    addPost: (post: string) => void
-    addMessage: (message: string) => void
     _rerender: () => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
+    dispatch: (action:any) => void
+
+
+    // addPost: (post: string) => void
+    // addMessage: (message: string) => void
 }
 
 export const store: StoreType = {
@@ -59,33 +61,52 @@ export const store: StoreType = {
             ]
         }
     },
-    addPost(post: string){
-        const newPost: PostType = {
-            id: 5,
-            message: post,
-            likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._rerender()
-    },
-    addMessage(message: string) {
-        const newMessage: MessageType = {
-            id: 5,
-            message: message
-        }
-        this._state.dialogsPage.messages.push(newMessage)
-        this._rerender()
-    },
     _rerender() {
         console.log('state changed')
     },
 
-    subscribe(callback ) {
+    subscribe(callback) {
         this._rerender = callback
     },
     getState() {
         return this._state
-    }
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostType = {
+                id: 5,
+                message: action.newPost,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._rerender()
+        }else
+            if (action.type === 'ADD-MESSAGE') {
+                const newMessage: MessageType = {
+                    id: 5,
+                    message: action.message
+                }
+                this._state.dialogsPage.messages.push(newMessage)
+                this._rerender()
+            }
+        }
+    // addPost(post: string){
+    //     const newPost: PostType = {
+    //         id: 5,
+    //         message: post,
+    //         likesCount: 0
+    //     }
+    //     this._state.profilePage.posts.push(newPost)
+    //     this._rerender()
+    // },
+    // addMessage(message: string) {
+    //     const newMessage: MessageType = {
+    //         id: 5,
+    //         message: message
+    //     }
+    //     this._state.dialogsPage.messages.push(newMessage)
+    //     this._rerender()
+    // }
 }
 
 
