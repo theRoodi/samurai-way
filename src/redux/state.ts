@@ -33,10 +33,10 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action:any) => void
 
-
-    // addPost: (post: string) => void
-    // addMessage: (message: string) => void
 }
+
+const ADD_POST = 'ADD-POST'
+const ADD_MESSAGE = 'ADD-MESSAGE'
 
 export const store: StoreType = {
     _state: {
@@ -72,7 +72,7 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const newPost: PostType = {
                 id: 5,
                 message: action.newPost,
@@ -80,33 +80,29 @@ export const store: StoreType = {
             }
             this._state.profilePage.posts.push(newPost)
             this._rerender()
-        }else
-            if (action.type === 'ADD-MESSAGE') {
-                const newMessage: MessageType = {
-                    id: 5,
-                    message: action.message
-                }
-                this._state.dialogsPage.messages.push(newMessage)
-                this._rerender()
+        } else if (action.type === ADD_MESSAGE) {
+            const newMessage: MessageType = {
+                id: 5,
+                message: action.message
             }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._rerender()
         }
-    // addPost(post: string){
-    //     const newPost: PostType = {
-    //         id: 5,
-    //         message: post,
-    //         likesCount: 0
-    //     }
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._rerender()
-    // },
-    // addMessage(message: string) {
-    //     const newMessage: MessageType = {
-    //         id: 5,
-    //         message: message
-    //     }
-    //     this._state.dialogsPage.messages.push(newMessage)
-    //     this._rerender()
-    // }
+    }
+}
+
+export const addMessageActionCreator = (message: string) => {
+    return {
+        type: ADD_MESSAGE,
+        message: message
+    }
+}
+
+export const addPostActionCreator = (newPost: string) => {
+    return {
+        type: ADD_POST,
+        newPost: newPost
+    }
 }
 
 

@@ -1,7 +1,7 @@
 import style from './Dialogs.module.css'
 import DialogItem from './dialog-item/DialogItem';
 import Message from './message/Message';
-import {DialogType, MessageType} from '../../redux/state';
+import {addMessageActionCreator, DialogType, MessageType} from '../../redux/state';
 import {ChangeEvent, useState} from 'react';
 
 type DialogPropsType = {
@@ -23,7 +23,7 @@ const Dialogs = (props: DialogPropsType) => {
     }
 
     const addMessage = () => {
-        props.dispatch({type: 'ADD-MESSAGE', message})
+        props.dispatch(addMessageActionCreator(message))
         setMessage('')
     }
 

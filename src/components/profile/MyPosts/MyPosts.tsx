@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import Post from './Post/Post';
 import style from './MyPosts.module.css';
 import {ProfilePagesType} from '../Profile';
-
+import {addPostActionCreator} from '../../../redux/state';
 
 const MyPosts = (props: ProfilePagesType) => {
     const postsElements = props.posts.map(p => <Post key={p.id}
@@ -17,7 +17,7 @@ const MyPosts = (props: ProfilePagesType) => {
     }
 
     const addPost = () => {
-        props.dispatch({type: 'ADD-POST', newPost})
+        props.dispatch(addPostActionCreator(newPost))
         setNewPost('')
     }
 
