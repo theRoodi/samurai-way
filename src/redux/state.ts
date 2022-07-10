@@ -1,4 +1,6 @@
 import post from '../components/profile/MyPosts/Post/Post';
+import {profileReducer} from './profile-reducer';
+import {dialogReducer} from './dialog-reducer';
 
 
 export type MessageType = {
@@ -72,38 +74,13 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            const newPost: PostType = {
-                id: 5,
-                message: action.newPost,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._rerender()
-        } else if (action.type === ADD_MESSAGE) {
-            const newMessage: MessageType = {
-                id: 5,
-                message: action.message
-            }
-            this._state.dialogsPage.messages.push(newMessage)
-            this._rerender()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
+        this._rerender()
     }
 }
 
-export const addMessageActionCreator = (message: string) => {
-    return {
-        type: ADD_MESSAGE,
-        message: message
-    }
-}
 
-export const addPostActionCreator = (newPost: string) => {
-    return {
-        type: ADD_POST,
-        newPost: newPost
-    }
-}
 
 
 
