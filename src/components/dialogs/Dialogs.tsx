@@ -3,7 +3,7 @@ import DialogItem from './dialog-item/DialogItem';
 import Message from './message/Message';
 import {addMessageActionCreator } from '../../redux/dialog-reducer';
 import {ChangeEvent, useState} from 'react';
-import {DialogType, MessageType} from '../../redux/state';
+import {DialogType, MessageType} from '../../redux/store';
 
 type DialogPropsType = {
     dialogs: Array<DialogType>
