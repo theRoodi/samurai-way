@@ -5,13 +5,14 @@ import Header from './components/header/Header'
 import Navbar from './components/navbar/Navbar';
 import Profile from './components/profile/Profile';
 import Dialogs from './components/dialogs/Dialogs';
-import {StoreType} from './redux/store';
+// import {StoreType} from './redux/store';
+import {AppStateType} from './redux/redux-store';
 
-type PropsType = {
-    store: StoreType
-}
+// type PropsType = {
+//     store: StoreType
+// }
 
-const App = (props: PropsType) => {
+const App = (props: AppStateType) => {
 
     const state = props.store.getState()
 

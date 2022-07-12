@@ -37,9 +37,6 @@ export type StoreType = {
 
 }
 
-const ADD_POST = 'ADD-POST'
-const ADD_MESSAGE = 'ADD-MESSAGE'
-
 export const store: StoreType = {
     _state: {
         dialogsPage: {
