@@ -1,9 +1,18 @@
-import {DialogsPageType, MessageType, RootStateType} from './store';
+import {DialogsPageType, DialogType, MessageType} from './store';
 
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
 
-const initialState = {
+export type AddMessageAT = {
+    type: typeof ADD_MESSAGE
+    message: string
+}
+
+export type initialStateType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+}
+const initialState: initialStateType = {
     dialogs: [
         {id: 1, name: 'Igor'},
         {id: 2, name: 'Max'},
@@ -17,17 +26,20 @@ const initialState = {
     ]
 }
 
-export const dialogReducer = (state:DialogsPageType = initialState, action:any) => {
-    if (action.type === ADD_MESSAGE) {
-        const newMessage: MessageType = {
-            id: 5,
-            message: action.message
-        }
-        state.messages.push(newMessage)
+export const dialogReducer = (state: DialogsPageType = initialState, action: any): DialogsPageType => {
+    switch (action.type) {
+        case ADD_MESSAGE:
+            const newMessage: MessageType = {
+                id: 5,
+                message: action.message
+            }
+            state.messages.push(newMessage)
+            return {...state}
+        default:
+            return state
     }
-    return state
 }
-export const addMessageActionCreator = (message: string) => {
+export const addMessageActionCreator = (message: string): AddMessageAT => {
     return {
         type: ADD_MESSAGE,
         message: message

@@ -8,9 +8,6 @@ import Dialogs from './components/dialogs/Dialogs';
 // import {StoreType} from './redux/store';
 import {AppStateType} from './redux/redux-store';
 
-// type PropsType = {
-//     store: StoreType
-// }
 
 const App = (props: AppStateType) => {
 
