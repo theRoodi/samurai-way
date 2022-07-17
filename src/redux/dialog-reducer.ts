@@ -8,11 +8,11 @@ export type AddMessageAT = {
     message: string
 }
 
-export type initialStateType = {
+export type InitialStateType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
 }
-const initialState: initialStateType = {
+const initialState: InitialStateType = {
     dialogs: [
         {id: 1, name: 'Igor'},
         {id: 2, name: 'Max'},
@@ -26,7 +26,7 @@ const initialState: initialStateType = {
     ]
 }
 
-export const dialogReducer = (state: DialogsPageType = initialState, action: any): DialogsPageType => {
+export const dialogReducer = (state: DialogsPageType = initialState, action: AddMessageAT): DialogsPageType => {
     switch (action.type) {
         case ADD_MESSAGE:
             const newMessage: MessageType = {

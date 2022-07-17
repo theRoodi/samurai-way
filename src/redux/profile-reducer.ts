@@ -2,7 +2,7 @@ import {PostType, ProfilePageType} from './store';
 
 const ADD_POST = 'ADD-POST'
 
-export type initialStateType = {
+export type InitialStateType = {
     posts: Array<PostType>
 }
 
@@ -11,7 +11,7 @@ export type AddPostAT = {
     newPost: string
 }
 
-const initialState:initialStateType = {
+const initialState: InitialStateType = {
     posts: [
         {id: 1, message: 'post 1', likesCount: 10},
         {id: 2, message: 'post 2', likesCount: 20},
@@ -19,8 +19,8 @@ const initialState:initialStateType = {
     ]
 }
 
-export const profileReducer = (state:ProfilePageType = initialState, action:any):ProfilePageType => {
-
+export const profileReducer = (state: ProfilePageType = initialState, action: AddPostAT): ProfilePageType => {
+    debugger
     switch (action.type) {
         case ADD_POST:
             const newPost: PostType = {

@@ -1,4 +1,3 @@
-import post from '../components/profile/MyPosts/Post/Post';
 import {profileReducer} from './profile-reducer';
 import {dialogReducer} from './dialog-reducer';
 
@@ -33,7 +32,7 @@ export type StoreType = {
     _rerender: () => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
-    dispatch: (action:any) => void
+    dispatch: (action: any) => void
 
 }
 

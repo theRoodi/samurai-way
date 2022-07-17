@@ -5,12 +5,9 @@ import Header from './components/header/Header'
 import Navbar from './components/navbar/Navbar';
 import Profile from './components/profile/Profile';
 import Dialogs from './components/dialogs/Dialogs';
-// import {StoreType} from './redux/store';
-import {AppStateType} from './redux/redux-store';
 
-
-const App = (props: AppStateType) => {
-
+const App = (props: any) => {
+    debugger
     const state = props.store.getState()
 
     return (
@@ -34,6 +31,5 @@ const App = (props: AppStateType) => {
 
     );
 }
-
 
 export default App;
