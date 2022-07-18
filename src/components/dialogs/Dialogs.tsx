@@ -1,31 +1,30 @@
 import style from './Dialogs.module.css'
 import DialogItem from './dialog-item/DialogItem';
 import Message from './message/Message';
-import {addMessageActionCreator } from '../../redux/dialog-reducer';
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent} from 'react';
 import {DialogType, MessageType} from '../../redux/store';
 
-type DialogPropsType = {
+type DialogsPropsType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    dispatch: (action: any) => void
+    message: string
+    onChangeMessage: (text: string) => void
+    onAddMessage: () => void
 }
 
-const Dialogs = (props: DialogPropsType) => {
+const Dialogs = (props: DialogsPropsType) => {
 
     const dialogsElements = props.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>)
 
     const messagesElements = props.messages.map(m => <Message key={m.id} message={m.message} id={m.id}/>)
 
-    let [message, setMessage] = useState('')
 
     const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setMessage(e.currentTarget.value)
+        props.onChangeMessage(e.currentTarget.value)
     }
 
     const addMessage = () => {
-        props.dispatch(addMessageActionCreator(message))
-        setMessage('')
+        props.onAddMessage()
     }
 
 
@@ -39,7 +38,7 @@ const Dialogs = (props: DialogPropsType) => {
             </div>
 
             <div>
-                <textarea value={message} onChange={onChangeMessage}></textarea>
+                <textarea value={props.message} onChange={onChangeMessage}></textarea>
                 <button onClick={addMessage}>Send</button>
             </div>
 

@@ -1,24 +1,27 @@
 import React, {ChangeEvent, useState} from 'react';
 import Post from './Post/Post';
 import style from './MyPosts.module.css';
-import {ProfilePagesType} from '../Profile';
-import {addPostActionCreator} from '../../../redux/profile-reducer';
+import {PostType} from '../../../redux/store';
 
-const MyPosts = (props: ProfilePagesType) => {
+export type MyPostsPropsType = {
+    posts: Array<PostType>
+    onAddPost: () => void
+    onNewPostChange: (text: string) => void
+    newPost: string
+}
+
+const MyPosts = (props: MyPostsPropsType) => {
     const postsElements = props.posts.map(p => <Post key={p.id}
                                                      message={p.message}
                                                      likesCount={p.likesCount}
                                                      id={p.id}/>)
 
-    let [newPost, setNewPost] = useState<string>('')
-
     const newPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        setNewPost(event.currentTarget.value)
+        props.onNewPostChange(event.currentTarget.value)
     }
 
     const addPost = () => {
-        props.dispatch(addPostActionCreator(newPost))
-        setNewPost('')
+        props.onAddPost()
     }
 
     return (
@@ -27,7 +30,7 @@ const MyPosts = (props: ProfilePagesType) => {
                 my posts
                 <div>
                     <div>
-                        <textarea value={newPost} onChange={newPostChange}></textarea>
+                        <textarea value={props.newPost} onChange={newPostChange}></textarea>
                     </div>
                     <div>
                         <button onClick={addPost}>Send</button>

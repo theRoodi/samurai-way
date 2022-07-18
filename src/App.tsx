@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Header from './components/header/Header'
 import Navbar from './components/navbar/Navbar';
 import Profile from './components/profile/Profile';
-import Dialogs from './components/dialogs/Dialogs';
+import DialogsContainer from './components/dialogs/DialogsContainer';
 
 const App = (props: any) => {
     debugger
@@ -17,7 +17,7 @@ const App = (props: any) => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path="/dialogs" element={<Dialogs
+                        <Route path="/dialogs" element={<DialogsContainer
                             dialogs={state.dialogsPage.dialogs}
                             messages={state.dialogsPage.messages}
                             dispatch={props.store.dispatch.bind(props.store)}/>}/>
