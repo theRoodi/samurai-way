@@ -10,7 +10,7 @@ const MyPostsContainer = (props: ProfilePagesType) => {
 
     let [newPost, setNewPost] = useState<string>('')
 
-    const onNewPostChange = (text:string) => {
+    const onNewPostChange = (text: string) => {
         setNewPost(text)
     }
 

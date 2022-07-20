@@ -1,34 +1,43 @@
-import style from './Dialogs.module.css'
-import DialogItem from './dialog-item/DialogItem';
-import Message from './message/Message';
-import {addMessageActionCreator } from '../../redux/dialog-reducer';
-import {ChangeEvent, useState} from 'react';
-import {DialogType, MessageType} from '../../redux/store';
-import Dialogs from './Dialogs';
 
-type DialogPropsType = {
+import {addMessageActionCreator, DialogType, MessageType, UpdateMessageActionCreator} from '../../redux/dialog-reducer';
+import { useState } from 'react';
+import Dialogs from './Dialogs';
+import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
+
+type MapStatePropsType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    dispatch: (action: any) => void
+    message: string
 }
 
-const DialogsContainer = (props: DialogPropsType) => {
-
-    let [message, setMessage] = useState('')
-
-    const onChangeMessage = (text:string) => {
-        setMessage(text)
-    }
-
-    const onAddMessage = () => {
-        props.dispatch(addMessageActionCreator(message))
-        setMessage('')
-    }
-
-
-    return (
-        <Dialogs dialogs={props.dialogs} messages={props.messages} message={message} onChangeMessage={onChangeMessage} onAddMessage={onAddMessage} />
-    )
+type MapDispatchPropsType = {
+    onAddMessage: () => void
+    onChangeMessage: (text:string) => void
 }
+
+export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
+
+
+const mapStateToProps = (state:MapStatePropsType): MapStatePropsType =>{
+    return{
+        dialogs: state.dialogs,
+        messages: state.messages,
+        message: state.message
+    }
+}
+const mapDispatchToProps = (dispatch:Dispatch) : MapDispatchPropsType=>{
+
+    return{
+        onAddMessage: () => {
+            dispatch(addMessageActionCreator())
+        },
+        onChangeMessage: (text) => {
+            dispatch(UpdateMessageActionCreator(text))
+        }
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer
