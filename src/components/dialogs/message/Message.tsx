@@ -1,5 +1,5 @@
 import style from './../Dialogs.module.css'
-import {MessageType} from '../../../redux/dialog-reducer';
+import {MessageType} from '../../../redux/store';
 
 const Messages = (props : MessageType) => {
     return(

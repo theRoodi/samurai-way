@@ -1,43 +1,34 @@
-
-import {addMessageActionCreator, DialogType, MessageType, UpdateMessageActionCreator} from '../../redux/dialog-reducer';
-import { useState } from 'react';
+import style from './Dialogs.module.css'
+import DialogItem from './dialog-item/DialogItem';
+import Message from './message/Message';
+import {addMessageActionCreator } from '../../redux/dialog-reducer';
+import {ChangeEvent, useState} from 'react';
+import {DialogType, MessageType} from '../../redux/store';
 import Dialogs from './Dialogs';
-import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
 
-type MapStatePropsType = {
+type DialogPropsType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    message: string
+    dispatch: (action: any) => void
 }
 
-type MapDispatchPropsType = {
-    onAddMessage: () => void
-    onChangeMessage: (text:string) => void
-}
+const DialogsContainer = (props: DialogPropsType) => {
 
-export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
+    let [message, setMessage] = useState('')
 
-
-const mapStateToProps = (state:MapStatePropsType): MapStatePropsType =>{
-    return{
-        dialogs: state.dialogs,
-        messages: state.messages,
-        message: state.message
+    const onChangeMessage = (text:string) => {
+        setMessage(text)
     }
-}
-const mapDispatchToProps = (dispatch:Dispatch) : MapDispatchPropsType=>{
 
-    return{
-        onAddMessage: () => {
-            dispatch(addMessageActionCreator())
-        },
-        onChangeMessage: (text) => {
-            dispatch(UpdateMessageActionCreator(text))
-        }
+    const onAddMessage = () => {
+        props.dispatch(addMessageActionCreator(message))
+        setMessage('')
     }
-}
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
+    return (
+        <Dialogs dialogs={props.dialogs} messages={props.messages} message={message} onChangeMessage={onChangeMessage} onAddMessage={onAddMessage} />
+    )
+}
 
 export default DialogsContainer

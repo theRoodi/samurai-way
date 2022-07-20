@@ -2,7 +2,15 @@ import style from './Dialogs.module.css'
 import DialogItem from './dialog-item/DialogItem';
 import Message from './message/Message';
 import {ChangeEvent} from 'react';
-import {DialogsPropsType} from './DialogsContainer';
+import {DialogType, MessageType} from '../../redux/store';
+
+type DialogsPropsType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    message: string
+    onChangeMessage: (text: string) => void
+    onAddMessage: () => void
+}
 
 const Dialogs = (props: DialogsPropsType) => {
 
