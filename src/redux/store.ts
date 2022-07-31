@@ -2,25 +2,27 @@ import {profileReducer} from './profile-reducer';
 import {dialogReducer} from './dialog-reducer';
 
 
-export type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
-export type DialogType = {
+type DialogType = {
     id: number
     name: string
 }
-export type PostType = {
+type PostType = {
     id: number
     message: string
     likesCount: number
 }
 export type ProfilePageType = {
     posts: Array<PostType>
+    newPostText: string
 }
 export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageText: string
 }
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -49,14 +51,16 @@ export const store: StoreType = {
                 {id: 1, message: 'Hey'},
                 {id: 2, message: 'How are you?'},
                 {id: 3, message: 'Fine'},
-            ]
+            ],
+            newMessageText: ''
         },
         profilePage: {
             posts: [
                 {id: 1, message: 'post 1', likesCount: 10},
                 {id: 2, message: 'post 2', likesCount: 20},
                 {id: 3, message: 'post 3', likesCount: 30},
-            ]
+            ],
+            newPostText: ''
         }
     },
     _rerender() {

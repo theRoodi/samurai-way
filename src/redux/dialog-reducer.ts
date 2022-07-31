@@ -1,16 +1,28 @@
-import {DialogsPageType, DialogType, MessageType} from './store';
+import {AppStateType} from './redux-store';
 
-
-const ADD_MESSAGE = 'ADD-MESSAGE'
-
-export type AddMessageAT = {
-    type: typeof ADD_MESSAGE
+export type MessageType = {
+    id: number
     message: string
 }
+export type DialogType = {
+    id: number
+    name: string
+}
+
+export type AddMessageAT = {
+    type: 'ADD-MESSAGE'
+}
+export type UpdateMessageAT = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newMessageText: string
+}
+
+type AllMessageType = AddMessageAT | UpdateMessageAT
 
 export type InitialStateType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageText: string
 }
 const initialState: InitialStateType = {
     dialogs: [
@@ -23,25 +35,37 @@ const initialState: InitialStateType = {
         {id: 1, message: 'Hey'},
         {id: 2, message: 'How are you?'},
         {id: 3, message: 'Fine'},
-    ]
+    ],
+    newMessageText: ''
 }
 
-export const dialogReducer = (state: DialogsPageType = initialState, action: AddMessageAT): DialogsPageType => {
+export const dialogReducer = (state: InitialStateType = initialState, action: AllMessageType): InitialStateType => {
     switch (action.type) {
-        case ADD_MESSAGE:
+        case 'ADD-MESSAGE':
             const newMessage: MessageType = {
                 id: 5,
-                message: action.message
+                message: state.newMessageText
             }
             state.messages.push(newMessage)
             return {...state}
+        case 'UPDATE-NEW-MESSAGE-TEXT':
+            return {
+                ...state,
+                newMessageText: action.newMessageText
+            }
         default:
             return state
     }
 }
-export const addMessageActionCreator = (message: string): AddMessageAT => {
+export const addMessageAC = (): AddMessageAT => {
     return {
-        type: ADD_MESSAGE,
-        message: message
+        type: 'ADD-MESSAGE'
+    }
+}
+
+export const updateMessageAC = (message: string): UpdateMessageAT => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-TEXT',
+        newMessageText: message
     }
 }

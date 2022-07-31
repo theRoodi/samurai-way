@@ -5,29 +5,23 @@ import Header from './components/header/Header'
 import Navbar from './components/navbar/Navbar';
 import Profile from './components/profile/Profile';
 import DialogsContainer from './components/dialogs/DialogsContainer';
+import {store} from './redux/redux-store';
 
 const App = (props: any) => {
     debugger
-    const state = props.store.getState()
+    const state = store.getState()
 
     return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar/>
-                <div className="app-wrapper-content">
-                    <Routes>
-                        <Route path="/dialogs" element={<DialogsContainer
-                            dialogs={state.dialogsPage.dialogs}
-                            messages={state.dialogsPage.messages}
-                            dispatch={props.store.dispatch.bind(props.store)}/>}/>
-                        <Route path="/profile" element={<Profile
-                            posts={state.profilePage.posts}
-                            dispatch={props.store.dispatch.bind(props.store)}/>}/>
-                    </Routes>
-                </div>
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar/>
+            <div className="app-wrapper-content">
+                <Routes>
+                    <Route path="/dialogs" element={<DialogsContainer/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
+                </Routes>
             </div>
-        </BrowserRouter>
+        </div>
 
     );
 }
