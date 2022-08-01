@@ -13,18 +13,22 @@ export type SetUsersAT = {
     users: Array<UserType>
 }
 
-export type LocationType = {
-    country: string
-    city: string
+// export type LocationType = {
+//     country: string
+//     city: string
+// }
+export type PhotoType = {
+    small: string
+    large: string
 }
 
 export type UserType = {
     id: number
-    photoUrl: string
+    photos: PhotoType
     followed: boolean
-    fullName: string
+    name: string
     status: string
-    location: LocationType
+    // location: LocationType
 }
 
 export type AllUsersType = FollowAT | UnfollowAT | SetUsersAT

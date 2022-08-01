@@ -1,64 +1,48 @@
+import React from 'react';
+import style from './Users.module.css';
+import userPhoto from '../../assets/images/avatar_temp.png';
+import axios from 'axios';
 import {UsersPropsType} from './UsersContainer';
-import style from './Users.module.css'
 
 
+export class Users extends React.Component<UsersPropsType, UsersPropsType> {
 
-export const Users = (props: UsersPropsType) => {
-    if (props.usersPage.users.length === 0 ){
-        props.setUsers([
-            {
-                id: 1,
-                photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/640px-Google_Photos_icon_%282020%29.svg.png',
-                followed: true,
-                fullName: 'Igor',
-                status: 'Proger',
-                location: {country: 'Russia', city: 'Novokuznetsk'}
-            },
-            {
-                id: 2,
-                photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/640px-Google_Photos_icon_%282020%29.svg.png',
-                followed: true,
-                fullName: 'Anton',
-                status: 'Streamer',
-                location: {country: 'Russia', city: 'Vologda'}
-            },
-            {
-                id: 3,
-                photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Photos_icon_%282020%29.svg/640px-Google_Photos_icon_%282020%29.svg.png',
-                followed: false,
-                fullName: 'Sanya',
-                status: 'Gamer',
-                location: {country: 'Russia', city: 'Moscow'}
-            },
-        ])
+    componentDidMount() {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            this.props.setUsers(response.data.items)
+        })
     }
 
-
-    return (
-        <div>
-            {props.usersPage.users.map(u => <div key={u.id}>
+    render() {
+        return (
+            <div>
+                {this.props.usersPage.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img className={style.userPhoto} src={u.photoUrl}/>
+                        <img className={style.userPhoto}
+                             src={u.photos.small != null
+                                 ? u.photos.small
+                                 : userPhoto}/>
                     </div>
                     <div>
                         {u.followed
-                            ? <button onClick={ () => props.unfollow(u.id)}>Unfollow</button>
-                            : <button onClick={ () => props.follow(u.id)}>Follow</button> }
+                            ? <button onClick={() => this.props.unfollow(u.id)}>Unfollow</button>
+                            : <button onClick={() => this.props.follow(u.id)}>Follow</button>}
 
                     </div>
                 </span>
-                <span>
                     <span>
-                        <div>{u.fullName}</div>
+                    <span>
+                        <div>{u.name}</div>
                         <div>{u.status}</div>
                     </span>
-                    <span>
-                        <div>{u.location.country}</div>
-                        <div>{u.location.city}</div>
-                    </span>
+                        {/*<span>*/}
+                        {/*    <div>{u.location.country}</div>*/}
+                        {/*    <div>{u.location.city}</div>*/}
+                        {/*</span>*/}
                 </span>
-            </div>)}
-        </div>
-    )
+                </div>)}
+            </div>
+        )
+    }
 }
