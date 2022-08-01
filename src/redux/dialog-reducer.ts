@@ -1,5 +1,3 @@
-import {AppStateType} from './redux-store';
-
 export type MessageType = {
     id: number
     message: string
@@ -40,19 +38,24 @@ const initialState: InitialStateType = {
 }
 
 export const dialogReducer = (state: InitialStateType = initialState, action: AllMessageType): InitialStateType => {
+
     switch (action.type) {
-        case 'ADD-MESSAGE':
-            const newMessage: MessageType = {
-                id: 5,
-                message: state.newMessageText
+        case 'ADD-MESSAGE': {
+            return {
+                ...state,
+                newMessageText: '',
+                messages: [...state.messages, {
+                    id: 5,
+                    message: state.newMessageText
+                }]
             }
-            state.messages.push(newMessage)
-            return {...state}
-        case 'UPDATE-NEW-MESSAGE-TEXT':
+        }
+        case 'UPDATE-NEW-MESSAGE-TEXT': {
             return {
                 ...state,
                 newMessageText: action.newMessageText
             }
+        }
         default:
             return state
     }

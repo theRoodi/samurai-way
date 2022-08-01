@@ -1,15 +1,13 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import Header from './components/header/Header'
 import Navbar from './components/navbar/Navbar';
 import Profile from './components/profile/Profile';
 import DialogsContainer from './components/dialogs/DialogsContainer';
-import {store} from './redux/redux-store';
+import UsersContainer from './components/users/UsersContainer';
 
-const App = (props: any) => {
-    debugger
-    const state = store.getState()
+const App = ( ) => {
 
     return (
         <div className="app-wrapper">
@@ -19,6 +17,7 @@ const App = (props: any) => {
                 <Routes>
                     <Route path="/dialogs" element={<DialogsContainer/>}/>
                     <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/users" element={<UsersContainer/>}/>
                 </Routes>
             </div>
         </div>
