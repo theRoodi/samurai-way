@@ -13,10 +13,16 @@ export type SetUsersAT = {
     users: Array<UserType>
 }
 
-// export type LocationType = {
-//     country: string
-//     city: string
-// }
+export type SetCurrentPageAT = {
+    type: 'SET-CURRENT-PAGE'
+    currentPage: number
+}
+
+export type SetTotalCountAT = {
+    type: 'SET-TOTAL-COUNT'
+    totalCount: number
+}
+
 export type PhotoType = {
     small: string
     large: string
@@ -28,16 +34,22 @@ export type UserType = {
     followed: boolean
     name: string
     status: string
-    // location: LocationType
 }
 
-export type AllUsersType = FollowAT | UnfollowAT | SetUsersAT
+
+export type AllUsersType = FollowAT | UnfollowAT | SetUsersAT | SetCurrentPageAT | SetTotalCountAT
 
 const initialState = {
-    users: []
+    users: [],
+    pageSize: 100,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 export type InitialStateType = {
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: AllUsersType): InitialStateType => {
@@ -67,8 +79,14 @@ export const usersReducer = (state: InitialStateType = initialState, action: All
         case 'SET-USERS': {
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users:  action.users
             }
+        }
+        case 'SET-CURRENT-PAGE': {
+            return {...state, currentPage: action.currentPage}
+        }
+        case 'SET-TOTAL-COUNT': {
+            return {...state, totalUsersCount: action.totalCount}
         }
         default:
             return state
@@ -94,4 +112,17 @@ export const setUsersAC = (users: Array<UserType>): SetUsersAT => {
         users
     }
 }
+export const setCurrentPageAC = (currentPage: number): SetCurrentPageAT => {
+    return {
+        type: 'SET-CURRENT-PAGE',
+        currentPage
+    }
+}
+export const setTotalUsersCountAC = (totalCount: number): SetTotalCountAT => {
+    return {
+        type: 'SET-TOTAL-COUNT',
+        totalCount
+    }
+}
+
 
