@@ -22,7 +22,10 @@ export type SetTotalCountAT = {
     type: 'SET-TOTAL-COUNT'
     totalCount: number
 }
-
+export type SwitchFetchingAT = {
+    type: 'TOGGLE-IS-FETCHING'
+    isFetching: boolean
+}
 export type PhotoType = {
     small: string
     large: string
@@ -37,19 +40,21 @@ export type UserType = {
 }
 
 
-export type AllUsersType = FollowAT | UnfollowAT | SetUsersAT | SetCurrentPageAT | SetTotalCountAT
+export type AllUsersType = FollowAT | UnfollowAT | SetUsersAT | SetCurrentPageAT | SetTotalCountAT | SwitchFetchingAT
 
 const initialState = {
     users: [],
     pageSize: 100,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 export type InitialStateType = {
     users: Array<UserType>
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: AllUsersType): InitialStateType => {
@@ -88,6 +93,9 @@ export const usersReducer = (state: InitialStateType = initialState, action: All
         case 'SET-TOTAL-COUNT': {
             return {...state, totalUsersCount: action.totalCount}
         }
+        case 'TOGGLE-IS-FETCHING': {
+            return {...state, isFetching: action.isFetching}
+        }
         default:
             return state
     }
@@ -122,6 +130,12 @@ export const setTotalUsersCountAC = (totalCount: number): SetTotalCountAT => {
     return {
         type: 'SET-TOTAL-COUNT',
         totalCount
+    }
+}
+export const switchFetchingAC = (isFetching: boolean): SwitchFetchingAT => {
+    return {
+        type: 'TOGGLE-IS-FETCHING',
+        isFetching
     }
 }
 
