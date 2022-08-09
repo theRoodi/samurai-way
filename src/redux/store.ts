@@ -18,6 +18,7 @@ type PostType = {
 export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
+    profile: any
 }
 export type DialogsPageType = {
     dialogs: Array<DialogType>
@@ -60,7 +61,8 @@ export const store: StoreType = {
                 {id: 2, message: 'post 2', likesCount: 20},
                 {id: 3, message: 'post 3', likesCount: 30},
             ],
-            newPostText: ''
+            newPostText: '',
+            profile: null
         }
     },
     _rerender() {

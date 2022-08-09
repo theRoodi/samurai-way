@@ -3,6 +3,33 @@ export type PostType = {
     message: string
     likesCount: number
 }
+
+export type ContactsProfileType = {
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: string
+    github: string
+    mainLink: string
+}
+
+export type PhotoProfileType = {
+    small: string
+    large: string
+}
+
+export type ProfileType = {
+    aboutMe: string
+    contacts: ContactsProfileType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: PhotoProfileType
+}
+
 export type AddPostAT = {
     type: 'ADD-POST'
 }
@@ -11,7 +38,13 @@ export type UpdatePostAT = {
     newPostText: string
 }
 
-export type AllProfileType = AddPostAT | UpdatePostAT
+export type SetUserProfileAT = {
+    type: 'SET-USER-PROFILE'
+    profile: any
+}
+
+
+export type AllProfileType = AddPostAT | UpdatePostAT | SetUserProfileAT
 
 const initialState = {
     posts: [
@@ -19,15 +52,12 @@ const initialState = {
         {id: 2, message: 'post 2', likesCount: 20},
         {id: 3, message: 'post 3', likesCount: 30},
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null
 }
 export type InitialStateType = typeof initialState
 
 export const profileReducer = (state: InitialStateType = initialState, action: AllProfileType): InitialStateType => {
-    const stateCopy = {
-        ...state,
-        posts: [...state.posts]
-    }
 
     switch (action.type) {
         case 'ADD-POST': {
@@ -47,6 +77,12 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
                 newPostText: action.newPostText
             }
         }
+        case 'SET-USER-PROFILE': {
+            return {
+                ...state,
+                profile: action.profile
+            }
+        }
         default:
             return state
     }
@@ -61,5 +97,11 @@ export const updatePostAC = (text: string): UpdatePostAT => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
         newPostText: text
+    }
+}
+export const setUserProfile = (profile: ProfileType): SetUserProfileAT => {
+    return {
+        type: 'SET-USER-PROFILE',
+        profile: profile
     }
 }
