@@ -6,8 +6,22 @@ import {setUserProfile} from '../../redux/profile-reducer';
 import {AppStateType} from '../../redux/redux-store';
 import {withRouter} from 'react-router-dom';
 
+type MapStatePropsType = {
+    profile:any
+}
+
+type MapDispatchPropsType = {
+    setUserProfile: (profile: any) => void
+}
+
+type PropsType = MapDispatchPropsType & MapStatePropsType
+
 
 class ProfileContainer extends React.Component<any, any> {
+
+
+
+
 
     componentDidMount() {
         let userId = this.props.match.params.userId
@@ -29,7 +43,7 @@ class ProfileContainer extends React.Component<any, any> {
     }
 }
 
-const mapStateToProps = (state: AppStateType) => ({
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     profile: state.profilePage.profile
 })
 
