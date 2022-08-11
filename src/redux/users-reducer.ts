@@ -26,6 +26,12 @@ export type SwitchFetchingAT = {
     type: 'TOGGLE-IS-FETCHING'
     isFetching: boolean
 }
+
+export type SwitchFollowingAT = {
+    type: 'TOGGLE-IS-FOLLOWING'
+    isFollowing: boolean
+    userId: number
+}
 export type PhotoType = {
     small: string
     large: string
@@ -40,21 +46,25 @@ export type UserType = {
 }
 
 
-export type AllUsersType = FollowAT | UnfollowAT | SetUsersAT | SetCurrentPageAT | SetTotalCountAT | SwitchFetchingAT
+export type AllUsersType = FollowAT | UnfollowAT | SetUsersAT | SetCurrentPageAT | SetTotalCountAT | SwitchFetchingAT | SwitchFollowingAT
+
+export type InitialStateType = {
+    users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean,
+    isFollowing: Array<number>
+}
+
 
 const initialState = {
     users: [],
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
-}
-export type InitialStateType = {
-    users: Array<UserType>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
+    isFetching: false,
+    isFollowing: []
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: AllUsersType): InitialStateType => {
@@ -95,6 +105,14 @@ export const usersReducer = (state: InitialStateType = initialState, action: All
         }
         case 'TOGGLE-IS-FETCHING': {
             return {...state, isFetching: action.isFetching}
+        }
+        case 'TOGGLE-IS-FOLLOWING': {
+            return {
+                ...state,
+                isFollowing: action.isFollowing
+                    ? [...state.isFollowing, action.userId]
+                    : state.isFollowing.filter(id => id != action.userId)
+            }
         }
         default:
             return state
@@ -138,5 +156,13 @@ export const toggleIsFetching = (isFetching: boolean): SwitchFetchingAT => {
         isFetching
     }
 }
+export const toggleIsFollowing = (isFollowing: boolean, userId: number): SwitchFollowingAT => {
+    return {
+        type: 'TOGGLE-IS-FOLLOWING',
+        isFollowing,
+        userId
+    }
+}
+
 
 

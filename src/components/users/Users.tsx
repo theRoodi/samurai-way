@@ -3,6 +3,7 @@ import userPhoto from '../../assets/images/avatar_temp.png';
 import React from 'react';
 import {UsersPropsType} from './UsersContainer';
 import {NavLink} from 'react-router-dom';
+import {userAPI} from '../../api/api';
 
 
 export const Users = (props: UsersPropsType) => {
@@ -37,8 +38,26 @@ export const Users = (props: UsersPropsType) => {
                         </div>
                         <div>
                             {u.followed
-                                ? <button onClick={() => props.unfollow(u.id)}>Unfollow</button>
-                                : <button onClick={() => props.follow(u.id)}>Follow</button>}
+                                ? <button disabled={props.isFollowing.some(id => id === u.id)} onClick={() => {
+                                    props.toggleIsFollowing(true, u.id)
+                                    userAPI.unfollowUser(u.id).then(response => {
+                                        if (response.resultCode == 0) {
+                                            props.unfollow(u.id)
+                                        }
+                                    })
+                                    props.toggleIsFollowing(false, u.id)
+                                }
+                                }>Unfollow</button>
+                                : <button disabled={props.isFollowing.some(id => id === u.id)} onClick={() => {
+                                    props.toggleIsFollowing(true, u.id)
+                                    userAPI.followUser(u.id).then(response => {
+                                        if (response.resultCode == 0) {
+                                            props.follow(u.id)
+                                        }
+                                    })
+                                    props.toggleIsFollowing(false, u.id)
+                                }
+                                }>Follow</button>}
 
                         </div>
                 </span>
