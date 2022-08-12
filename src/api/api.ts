@@ -16,20 +16,10 @@ export const userAPI = {
     },
 
     unfollowUser(id: number) {
-        return instance.delete(`follow/${id}`, {
-            withCredentials: true,
-            headers: {
-                'API-KEY': 'a986a183-9555-4200-8974-3db59bc4f81a'
-            }
-        }).then(response => response.data)
+        return instance.delete(`follow/${id}`).then(response => response.data)
     },
     followUser(id: number){
-        return instance.post(`follow/${id}`, {}, {
-            withCredentials: true,
-            headers: {
-                'API-KEY': 'a986a183-9555-4200-8974-3db59bc4f81a'
-            }
-        }).then(response => response.data)
+        return instance.post(`follow/${id}`).then(response => response.data)
     }
 }
 
