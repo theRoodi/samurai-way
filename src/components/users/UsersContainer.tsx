@@ -2,9 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {
+    follow,
     followSuccess, getUsers,
     InitialStateType,
-    setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, toggleIsFollowing,
+    setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, toggleIsFollowing, unfollow,
     unfollowSuccess,
     UserType
 } from '../../redux/users-reducer';
@@ -38,7 +39,7 @@ type MapDispatchPropsType = {
 export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
 
 
-export class UsersContainer extends React.Component<UsersPropsType, UsersPropsType> {
+export class UsersContainer extends React.Component<any, any> {
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
@@ -116,5 +117,5 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 export default connect(mapStateToProps,
     {
-        followSuccess, unfollowSuccess,setUsers, setCurrentPage,setTotalUsersCount, toggleIsFetching, toggleIsFollowing, getUsers
-    })(UsersContainer)
+        followSuccess, unfollowSuccess,setUsers, setCurrentPage,setTotalUsersCount, toggleIsFetching, toggleIsFollowing, getUsers,
+    follow,unfollow })(UsersContainer)

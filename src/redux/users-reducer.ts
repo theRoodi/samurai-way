@@ -121,7 +121,7 @@ export const usersReducer = (state: InitialStateType = initialState, action: All
                 ...state,
                 isFollowing: action.isFollowing
                     ? [...state.isFollowing, action.userId]
-                    : state.isFollowing.filter(id => id != action.userId)
+                    : state.isFollowing.filter(id => id !== action.userId)
             }
         }
         default:
