@@ -1,3 +1,6 @@
+import {Dispatch} from 'redux';
+import {userAPI} from '../api/api';
+
 export type PostType = {
     id: number
     message: string
@@ -104,4 +107,10 @@ export const setUserProfile = (profile: ProfileType): SetUserProfileAT => {
         type: 'SET-USER-PROFILE',
         profile: profile
     }
+}
+
+export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
+    userAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data))
+    })
 }
