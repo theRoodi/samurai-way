@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ComponentType} from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {getUserProfile} from '../../redux/profile-reducer';
@@ -45,7 +45,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth
 })
 
-export default compose(
+export default compose<ComponentType>(
     connect(mapStateToProps, {getUserProfile}),
     withRouter,
     WithAuthRedirectComponent

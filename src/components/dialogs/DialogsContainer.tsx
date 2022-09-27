@@ -3,8 +3,7 @@ import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {compose, Dispatch} from 'redux';
-import {Redirect} from 'react-router-dom';
-import React from 'react';
+import React, {ComponentType} from 'react';
 import {WithAuthRedirectComponent} from '../../hoc/WithAuthRedirectComponent';
 
 type MapStatePropsType = {
@@ -39,7 +38,7 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 }
 
 
-export default compose(
+export default compose<ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),
     WithAuthRedirectComponent
 )(Dialogs)

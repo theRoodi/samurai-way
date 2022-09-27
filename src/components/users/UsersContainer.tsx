@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ComponentType} from 'react';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {
@@ -116,7 +116,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 //
 // }
 
-export default compose(
+export default compose<ComponentType>(
     connect(mapStateToProps,
         {
             followSuccess,
