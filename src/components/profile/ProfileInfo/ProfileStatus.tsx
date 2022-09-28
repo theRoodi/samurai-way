@@ -10,6 +10,7 @@ export const ProfileStatus = (props: StatusPropsType) => {
     const [statusToggle, setStatusToggle] = useState<boolean>(false)
 
     const toggleEditMode = () => {
+        debugger
         setStatusToggle(!statusToggle)
     }
 
