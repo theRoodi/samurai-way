@@ -5,10 +5,11 @@ import {ProfileStatus} from './ProfileStatus';
 
 type ProfileInfoType = {
     profile: any
+    status: string
+    updateStatus: any
 }
 
 const ProfileInfo = (props: ProfileInfoType) => {
-    debugger
     if (!props.profile) {
         return <Preloader/>
     }
@@ -20,7 +21,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
             </div>
             <div className={style.description}>
                 <img src={props.profile.photos.large} alt="avatar"/>
-                <ProfileStatus status={'status was here'}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 <div>{props.profile.aboutMe}</div>
                 <div>{props.profile.contacts.twitter}</div>
                 <div>{props.profile.lookingForAJob}</div>

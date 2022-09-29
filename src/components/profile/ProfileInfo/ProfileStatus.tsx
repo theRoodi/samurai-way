@@ -1,7 +1,8 @@
-import {useState} from 'react';
+import {ChangeEvent, useState} from 'react';
 
 export type StatusPropsType = {
     status: string
+    updateStatus: any
 }
 
 export const ProfileStatus = (props: StatusPropsType) => {
@@ -10,20 +11,23 @@ export const ProfileStatus = (props: StatusPropsType) => {
     const [statusToggle, setStatusToggle] = useState<boolean>(false)
 
     const toggleEditMode = () => {
-        debugger
         setStatusToggle(!statusToggle)
+    }
+    const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
+        setStatus(e.currentTarget.value)
+        props.updateStatus(status)
     }
 
     return (
         <div>
             {!statusToggle &&
                 <div>
-                    <span onDoubleClick={toggleEditMode}>{status}</span>
+                    <span onDoubleClick={toggleEditMode}>{status || '-----'}</span>
                 </div>
             }
             {statusToggle &&
                 <div>
-                    <input onBlur={toggleEditMode} value={status} autoFocus/>
+                    <input onChange={onChangeStatus} onBlur={toggleEditMode} value={status} autoFocus/>
                 </div>
             }
         </div>
