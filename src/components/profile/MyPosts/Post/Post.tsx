@@ -1,19 +1,19 @@
 import React from 'react';
 import style from './Post.module.css'
-import {PostType} from '../../../../redux/profile-reducer';
 
-const Post: React.FC<PostType> = (props) => {
+type PropsType = {
+    message: string
+    likes: number
+}
+export const Post = (props: PropsType) => {
     return (
-        <div>
-            <div className={style.item}>
-                <img src="https://www.svgrepo.com/show/2750/boy.svg"/>
-                {props.message}
-                <div>
-                    <span>{props.likesCount} likes</span>
-                </div>
-            </div>
+
+        <div className={style.item}>
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
+                alt="avatar"/>
+            <span>{props.message}</span>
+            <div>{props.likes} likes</div>
         </div>
     )
 }
-
-export default Post

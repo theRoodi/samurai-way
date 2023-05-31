@@ -1,17 +1,16 @@
 import React from 'react';
 import style from './Profile.module.css'
-import ProfileInfo from './ProfileInfo/ProfileInfo';
-import MyPostsContainer from './MyPosts/MyPostsContainer';
+import {MyPosts} from './MyPosts/MyPosts';
 
-
-const Profile = (props: any) => {
-    debugger
+export const Profile = () => {
     return (
         <div className={style.content}>
-            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
-            <MyPostsContainer/>
+            <div>
+                <img src="https://codetheweb.blog/assets/img/posts/css-advanced-background-images/cover.jpg"
+                     alt="cover"/>
+            </div>
+            <div>ava + desc</div>
+            <MyPosts/>
         </div>
     )
 }
-
-export default Profile

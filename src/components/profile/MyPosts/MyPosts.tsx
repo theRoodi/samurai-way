@@ -1,41 +1,23 @@
-import React, {ChangeEvent, useState} from 'react';
-import Post from './Post/Post';
-import style from './MyPosts.module.css';
-import {MyPostsPropsType} from './MyPostsContainer';
+import React from 'react';
+import {Post} from './Post/Post';
+import style from './MyPosts.module.css'
 
-const MyPosts = (props: MyPostsPropsType) => {
-    const postsElements = props.profilePage.posts.map(p => <Post key={p.id}
-                                                                 message={p.message}
-                                                                 likesCount={p.likesCount}
-                                                                 id={p.id}/>)
 
-    const newPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        props.onNewPostChange(event.currentTarget.value)
-    }
-
-    const addPost = () => {
-        props.onAddPost()
-    }
-
+export const MyPosts = () => {
     return (
         <div>
-            <div className={style.posts}>
-                my posts
+            my post
+            <div>
                 <div>
-                    <div>
-                        <textarea value={props.profilePage.newPostText} onChange={newPostChange}></textarea>
-                    </div>
-                    <div>
-                        <button onClick={addPost}>Send</button>
-                    </div>
-
+                    <textarea></textarea>
+                    <button>Add post</button>
                 </div>
-                <div className={style.post}>
-                    {postsElements}
+                <div className={style.posts}>
+                    <Post message={'Hello'} likes={5}/>
+                    <Post message={'How are you'} likes={3}/>
+                    <Post message={'Hello world'} likes={10}/>
                 </div>
             </div>
         </div>
     )
 }
-
-export default MyPosts

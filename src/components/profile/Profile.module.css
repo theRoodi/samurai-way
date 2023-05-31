@@ -1,0 +1,10 @@
+.content {
+    background-color: #591985;
+    grid-area: c;
+}
+.content img {
+    max-width: 100%;
+}
+.item {
+    color: white;
+}
