@@ -1,16 +1,16 @@
 import React from 'react';
-import style from './Profile.module.css'
 import {MyPosts} from './MyPosts/MyPosts';
+import {ProfileInfo} from './ProfileInfo/ProfileInfo';
+import {PostType} from '../../App';
 
-export const Profile = () => {
+type PropsType = {
+    posts: Array<PostType>
+}
+export const Profile = (props:PropsType) => {
     return (
-        <div className={style.content}>
-            <div>
-                <img src="https://codetheweb.blog/assets/img/posts/css-advanced-background-images/cover.jpg"
-                     alt="cover"/>
-            </div>
-            <div>ava + desc</div>
-            <MyPosts/>
+        <div >
+            <ProfileInfo />
+            <MyPosts posts={props.posts}/>
         </div>
     )
 }

@@ -1,21 +1,29 @@
 import React from 'react';
 import {Post} from './Post/Post';
 import style from './MyPosts.module.css'
+import {PostType} from '../../../App';
+
+type PropsType = {
+    posts: Array<PostType>
+}
 
 
-export const MyPosts = () => {
+export const MyPosts = (props:PropsType) => {
+    const postsElements = props.posts.map( m => <Post message={m.message} likes={m.likes}/>)
     return (
-        <div>
-            my post
+        <div className={style.postsBlock}>
+            <h3>my post</h3>
             <div>
                 <div>
-                    <textarea></textarea>
-                    <button>Add post</button>
+                    <div>
+                        <textarea></textarea>
+                    </div>
+                    <div>
+                        <button>Add post</button>
+                    </div>
                 </div>
                 <div className={style.posts}>
-                    <Post message={'Hello'} likes={5}/>
-                    <Post message={'How are you'} likes={3}/>
-                    <Post message={'Hello world'} likes={10}/>
+                    {postsElements}
                 </div>
             </div>
         </div>

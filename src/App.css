@@ -13,5 +13,13 @@
 
 }
 
+.app-wrapper-content{
 
+    background-color: #591985;
+    grid-area: c;
+
+}
+.app-wrapper-content img {
+    max-width: 100%;
+}
 
