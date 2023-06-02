@@ -8,34 +8,20 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {Friends} from './components/Friends/Friends';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
-
-export type DialogsType = {
-    id: number
-    name: string
-}
-export type MessagesType = {
-    id: number
-    name: string
-}
-export type PostType = {
-    id: number
-    message: string
-    likes: number
-}
-type PropsType = {
-}
+import {addPost, changeHandler, RootStateType} from './state/state';
 
 
 
-const App = (props:any) => {
+
+const App = (props:RootStateType) => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
-                    <Route path='/messages' render={() => <Dialogs dialogs={props.state.messagePage.dialogs} messages={props.state.messagePage.messages}/>}/>
-                    <Route path='/profile' render={() => <Profile posts={props.state.profilePage.posts}/>}/>
+                    <Route path='/messages' render={() => <Dialogs dialogs={props.messagePage.dialogs} messages={props.messagePage.messages}/>}/>
+                    <Route path='/profile' render={() => <Profile profilePage={props.profilePage} changeHandler={changeHandler} addPost={addPost}/>}/>
                     <Route path='/friends' render={() => <Friends/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
