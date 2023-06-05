@@ -8,20 +8,23 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {Friends} from './components/Friends/Friends';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
-import {addPost, changeHandler, RootStateType} from './state/state';
+import {ActionTypes, StoreType} from './state/state';
 
 
+type PropsType = {
+    store: StoreType
+    dispatch: (action: ActionTypes) => void
+}
 
-
-const App = (props:RootStateType) => {
+const App = (props:PropsType) => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
-                    <Route path='/messages' render={() => <Dialogs dialogs={props.messagePage.dialogs} messages={props.messagePage.messages}/>}/>
-                    <Route path='/profile' render={() => <Profile profilePage={props.profilePage} changeHandler={changeHandler} addPost={addPost}/>}/>
+                    <Route path='/messages' render={() => <Dialogs messagePage={props.store.getState().messagePage} dispatch={props.dispatch}/>}/>
+                    <Route path='/profile' render={() => <Profile profilePage={props.store.getState().profilePage} dispatch={props.dispatch}/>}/>
                     <Route path='/friends' render={() => <Friends/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>

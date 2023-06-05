@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {RootStateType, state, subscriber} from './state/state'
+import {store} from './state/state'
 
-let rerender = (state: RootStateType) => {
+let rerender = () => {
     ReactDOM.render(
-        <App profilePage={state.profilePage} messagePage={state.messagePage}/>,
+        <App store={store} dispatch={store.dispatch.bind(store)}/>,
         document.getElementById('root')
     );
 }
 
-rerender(state)
-subscriber(rerender)
+rerender()
+store.subscriber(rerender)

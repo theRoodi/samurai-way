@@ -1,22 +1,23 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import {Post} from './Post/Post';
 import style from './MyPosts.module.css'
-import {ProfilePageType} from '../../../state/state';
+import {ActionTypes, addPostAC, ProfilePageType, updateNewPostTextAC} from '../../../state/state';
 
 type PropsType = {
     profilePage: ProfilePageType
-    addPost: () => void
-    changeHandler: (newText: string) => void
+    dispatch: (action: ActionTypes) => void
 }
+
 
 export const MyPosts = (props:PropsType) => {
     const postsElements = props.profilePage.posts.map( m => <Post message={m.message} likes={m.likes}/>)
 
     const onAddPost = () => {
-        props.addPost()
+        props.dispatch(addPostAC())
     }
     const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeHandler(e.currentTarget.value)
+        const action = updateNewPostTextAC(e.currentTarget.value)
+        props.dispatch(action)
     }
 
     return (

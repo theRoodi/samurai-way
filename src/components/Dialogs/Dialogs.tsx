@@ -1,18 +1,25 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 
 import style from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {DialogsType, MessagesType} from '../../state/state';
+import {addMessageAC, DialogPageType, DialogsType, MessagesType, updateNewMessageTextAC} from '../../state/state';
 
 type PropsType = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessagesType>
+    dispatch: (action: any) => void
+    messagePage: DialogPageType
 }
 export const Dialogs = (props: PropsType) => {
-    const dialogsElements = props.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
+    const dialogsElements = props.messagePage.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
 
-    const messageElements = props.messages.map(m => <Message message={m.name}/>)
+    const messageElements = props.messagePage.messages.map(m => <Message message={m.message}/>)
+    const addMessage = () => {
+        props.dispatch(addMessageAC())
+    }
+    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        const action = updateNewMessageTextAC(e.currentTarget.value)
+        props.dispatch(action)
+    }
 
     return (
         <div className={style.dialogs}>
@@ -22,9 +29,11 @@ export const Dialogs = (props: PropsType) => {
             <div className={style.messages}>
                 {messageElements}
                 <div>
-                    <div><textarea></textarea></div>
                     <div>
-                        <button>Send</button>
+                        <textarea placeholder={'Enter message'} value={props.messagePage.newMessageText} onChange={onChangeHandler}/>
+                    </div>
+                    <div>
+                        <button onClick={addMessage}>Send</button>
                     </div>
                 </div>
             </div>
