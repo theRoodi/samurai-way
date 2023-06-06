@@ -1,3 +1,5 @@
+import {AddPostActionType, profileReducer, UpdatePostTextActionType} from './profileReducer';
+import {AddMessageActionType, dialogReducer, UpdateMessageTextActionType} from './dialogReducer';
 
 export type DialogsType = {
     id: number
@@ -24,47 +26,22 @@ export type DialogPageType = {
     newMessageText: string
 }
 
-// export type RootStateType = {
-//     store : StoreType
-//     dispatch: (action: any) => void
-// }
 export type RootStateType = {
     profilePage : ProfilePageType
     messagePage: DialogPageType
 }
 
-export type AddPostType = {
-    addPost: (post: string) => void
-}
 
 export type StoreType = {
     _state: RootStateType
     _callSubscriber: (state: RootStateType) => void
-    subscriber: (callback: () => void) => void
+    subscribe: (callback: () => void) => void
     getState: () => RootStateType
     dispatch: (action: ActionTypes) => void
 }
 
 export type ActionTypes = AddPostActionType | UpdatePostTextActionType | AddMessageActionType | UpdateMessageTextActionType
 
-type AddPostActionType = {
-    type: 'ADD-POST'
-}
-
-type UpdatePostTextActionType = {
-    type: 'UPDATE-TEXT-POST'
-    newText: string
-}
-type AddMessageActionType = ReturnType<typeof addMessageAC>
-
-type UpdateMessageTextActionType = ReturnType<typeof updateNewMessageTextAC>
-
-
-
-const ADD_POST = 'ADD-POST'
-const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST'
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE'
 export const store: StoreType= {
     _state: {
         profilePage: {
@@ -90,66 +67,23 @@ export const store: StoreType= {
             newMessageText: ''
         }
     },
-    _callSubscriber(state: RootStateType) {
+    _callSubscriber() {
         console.log('re-rendered')
     },
 
-    subscriber(observer) {
+    subscribe(observer) {
         this._callSubscriber = observer
     },
     getState() {
         return this._state
     },
     dispatch(action) {
-        switch (action.type){
-            case ADD_POST:
-                const newPost: PostType = {
-                    id: 4,
-                    message: this._state.profilePage.newPostText,
-                    likes: 0
-                }
-                this._state.profilePage.posts.push(newPost)
-                this._state.profilePage.newPostText = ''
-                this._callSubscriber(this._state)
-                return
-            case UPDATE_TEXT_POST:
-                this._state.profilePage.newPostText = action.newText
-                this._callSubscriber(this._state)
-                return;
-            case ADD_MESSAGE:
-                const newMessage: MessagesType = {
-                    id: 4,
-                    message: this._state.messagePage.newMessageText
-                }
-                this._state.messagePage.messages.push(newMessage)
-                this._state.messagePage.newMessageText = ''
-                this._callSubscriber(this._state)
-                return;
-            case UPDATE_TEXT_MESSAGE:
-                this._state.messagePage.newMessageText = action.newText
-                this._callSubscriber(this._state)
-                return;
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.messagePage = dialogReducer(this._state.messagePage, action)
+        this._callSubscriber(this._state)
     }
 
 }
 
-export const addPostAC = (): AddPostActionType => {
-    return {
-        type: ADD_POST
-    }
-}
 
-export const updateNewPostTextAC = (text: string): UpdatePostTextActionType => {
-    return {type: UPDATE_TEXT_POST, newText: text}
-}
 
-export const addMessageAC = () => {
-    return {
-        type: ADD_MESSAGE
-    } as const
-}
-
-export const updateNewMessageTextAC = (text: string) => {
-    return {type: UPDATE_TEXT_MESSAGE, newText: text} as const
-}

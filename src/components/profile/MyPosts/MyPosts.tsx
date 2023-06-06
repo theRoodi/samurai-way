@@ -1,23 +1,26 @@
 import React, {ChangeEvent} from 'react';
 import {Post} from './Post/Post';
 import style from './MyPosts.module.css'
-import {ActionTypes, addPostAC, ProfilePageType, updateNewPostTextAC} from '../../../state/state';
+import { PostType} from '../../../state/state';
 
 type PropsType = {
-    profilePage: ProfilePageType
-    dispatch: (action: ActionTypes) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+    posts: Array<PostType>
+    newPostText : string
+
 }
 
 
 export const MyPosts = (props:PropsType) => {
-    const postsElements = props.profilePage.posts.map( m => <Post message={m.message} likes={m.likes}/>)
+    const postsElements = props.posts.map( m => <Post message={m.message} likes={m.likes}/>)
 
     const onAddPost = () => {
-        props.dispatch(addPostAC())
+        props.addPost()
     }
     const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        const action = updateNewPostTextAC(e.currentTarget.value)
-        props.dispatch(action)
+        const newText = e.currentTarget.value
+        props.updateNewPostText(newText)
     }
 
     return (
@@ -26,7 +29,7 @@ export const MyPosts = (props:PropsType) => {
             <div>
                 <div>
                     <div>
-                        <textarea value={props.profilePage.newPostText} onChange={onChangeHandler}/>
+                        <textarea placeholder={'Type your post'} value={props.newPostText} onChange={onChangeHandler}/>
                     </div>
                     <div>
                         <button onClick={onAddPost}>Add post</button>

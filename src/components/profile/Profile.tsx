@@ -1,17 +1,16 @@
 import React from 'react';
-import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {ActionTypes, ProfilePageType} from '../../state/state';
+import { StoreType} from '../../state/state';
+import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 
 type PropsType = {
-    profilePage: ProfilePageType
-    dispatch: (action: ActionTypes) => void
+    store: StoreType
 }
 export const Profile = (props:PropsType) => {
     return (
         <div >
             <ProfileInfo />
-            <MyPosts profilePage={props.profilePage} dispatch={props.dispatch}/>
+            <MyPostsContainer store={props.store}/>
         </div>
     )
 }
