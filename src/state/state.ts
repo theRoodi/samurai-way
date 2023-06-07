@@ -1,4 +1,4 @@
-import {AddPostActionType, profileReducer, UpdatePostTextActionType} from './profileReducer';
+import {ActionType, AddPostActionType, profileReducer, UpdatePostTextActionType} from './profileReducer';
 import {AddMessageActionType, dialogReducer, UpdateMessageTextActionType} from './dialogReducer';
 
 export type DialogsType = {
@@ -37,11 +37,8 @@ export type StoreType = {
     _callSubscriber: (state: RootStateType) => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
-    dispatch: (action: ActionTypes) => void
+    dispatch: (action: ActionType) => void
 }
-
-export type ActionTypes = AddPostActionType | UpdatePostTextActionType | AddMessageActionType | UpdateMessageTextActionType
-
 export const store: StoreType= {
     _state: {
         profilePage: {

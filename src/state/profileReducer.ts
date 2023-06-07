@@ -10,6 +10,12 @@ export type UpdatePostTextActionType = {
     newText: string
 }
 
+export type ActionType = AddPostActionType | UpdatePostTextActionType
+type PropsStateType = {
+    posts: Array<PostType>
+    newPostText: string
+}
+
 const ADD_POST = 'ADD-POST'
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST'
 
@@ -21,20 +27,19 @@ const initialState = {
     ],
     newPostText: ''
 }
-export const profileReducer = (state: any = initialState, action: any) => {
+export const profileReducer = (state: PropsStateType = initialState, action: ActionType) => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             const newPost: PostType = {
                 id: 4,
                 message: state.newPostText,
                 likes: 1
             }
-            state.posts.push(newPost)
-            state.newPostText = ''
-            return state
-        case UPDATE_TEXT_POST:
-            state.newPostText = action.newText
-            return state;
+            return {...state, newPostText: '', posts: [newPost, ...state.posts]}
+        }
+        case UPDATE_TEXT_POST: {
+            return {...state, newPostText: action.newText};
+        }
         default:
             return state
     }

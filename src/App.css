@@ -11,11 +11,13 @@
     grid-template-columns: 2fr 10fr;
     grid-gap: 5px;
 
+    color: white;
+
 }
 
 .app-wrapper-content{
 
-    background-color: #591985;
+    background-color: #864eb9;
     grid-area: c;
 
 }
