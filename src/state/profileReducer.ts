@@ -1,4 +1,5 @@
 import {PostType} from './state';
+import {v1} from 'uuid';
 
 
 export type AddPostActionType = {
@@ -11,7 +12,7 @@ export type UpdatePostTextActionType = {
 }
 
 export type ActionType = AddPostActionType | UpdatePostTextActionType
-type PropsStateType = {
+type InitialStateType = {
     posts: Array<PostType>
     newPostText: string
 }
@@ -21,17 +22,17 @@ const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST'
 
 const initialState = {
     posts: [
-        {id: 1, message: 'Hello', likes: 5},
-        {id: 2, message: 'How are you', likes: 7},
-        {id: 3, message: 'Hello world', likes: 23}
-    ],
+        {id: v1(), message: 'Hello', likes: 5},
+        {id: v1(), message: 'How are you', likes: 7},
+        {id: v1(), message: 'Hello world', likes: 23}
+    ] as Array<PostType>,
     newPostText: ''
 }
-export const profileReducer = (state: PropsStateType = initialState, action: ActionType) => {
+export const profileReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case ADD_POST: {
             const newPost: PostType = {
-                id: 4,
+                id: v1(),
                 message: state.newPostText,
                 likes: 1
             }

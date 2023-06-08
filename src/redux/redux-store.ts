@@ -3,6 +3,7 @@ import {profileReducer} from '../state/profileReducer';
 import {dialogReducer} from '../state/dialogReducer';
 import {userReducer} from '../state/user-reducer';
 
+export type AppStateType = ReturnType<typeof reducers>
 
 const reducers = combineReducers({
     profilePage: profileReducer,

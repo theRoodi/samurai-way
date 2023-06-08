@@ -1,27 +1,33 @@
-
-type LocationType = {
-    city: string
-    country: string
+type PhotosType = {
+    small: string | null
+    large: string | null
 }
 
 export type UserType = {
-    photoUrl: string
+    photos: PhotosType
     id: string
     followed: boolean
-    fullName: string
+    name: string
     status: string
-    location: LocationType
+    uniqueUrlName: string | null
 }
 
-type StateType = {
+export type InitialStateType = {
     users: Array<UserType>
 }
 
-const initialState = {
+const initialState: InitialStateType = {
     users: []
+
 }
 
-export const userReducer = (state: StateType = initialState, action: any) => {
+type FollowActionType = ReturnType<typeof followAC>
+type UnfollowActionType = ReturnType<typeof unfollowAC>
+type SetUsersActionType = ReturnType<typeof setUsersAC>
+
+type ActionTypes = FollowActionType | UnfollowActionType | SetUsersActionType
+
+export const userReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case 'FOLLOW': {
             return {

@@ -1,16 +1,17 @@
-import {ActionType, AddPostActionType, profileReducer, UpdatePostTextActionType} from './profileReducer';
-import {AddMessageActionType, dialogReducer, UpdateMessageTextActionType} from './dialogReducer';
+import {ActionType, profileReducer } from './profileReducer';
+import { dialogReducer} from './dialogReducer';
+import {v1} from 'uuid';
 
-export type DialogsType = {
-    id: number
+type DialogsType = {
+    id: string
     name: string
 }
-export type MessagesType = {
-    id: number
+type MessagesType = {
+    id: string
     message: string
 }
 export type PostType = {
-    id: number
+    id: string
     message: string
     likes: number
 }
@@ -43,23 +44,23 @@ export const store: StoreType= {
     _state: {
         profilePage: {
             posts: [
-                {id: 1, message: 'Hello', likes: 5},
-                {id: 2, message: 'How are you', likes: 7},
-                {id: 3, message: 'Hello world', likes: 23}
+                {id: v1(), message: 'Hello', likes: 5},
+                {id: v1(), message: 'How are you', likes: 7},
+                {id: v1(), message: 'Hello world', likes: 23}
             ],
             newPostText: ''
         },
         messagePage: {
             dialogs: [
-                {id: 1, name: 'User one'},
-                {id: 2, name: 'User two'},
-                {id: 3, name: 'User three'},
-                {id: 4, name: 'User four'}
+                {id: v1(), name: 'User one'},
+                {id: v1(), name: 'User two'},
+                {id: v1(), name: 'User three'},
+                {id: v1(), name: 'User four'}
             ],
             messages: [
-                {id: 1, message: 'Hello'},
-                {id: 2, message: 'Hello world'},
-                {id: 3, message: 'Hello there'}
+                {id: v1(), message: 'Hello'},
+                {id: v1(), message: 'Hello world'},
+                {id: v1(), message: 'Hello there'}
             ],
             newMessageText: ''
         }

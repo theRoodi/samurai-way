@@ -3,7 +3,7 @@ import React, {ChangeEvent} from 'react';
 import style from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {DialogsType, MessagesType} from '../../state/state';
+import {DialogsType, MessagesType} from '../../state/dialogReducer';
 
 type PropsType = {
     addMessage: () => void
