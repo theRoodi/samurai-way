@@ -12,18 +12,46 @@ import {UsersStateType} from './UsersContainer';
 
 export class UsersClass extends React.Component<any, any> {
 
-    constructor(props: any) {
-        super(props);
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+                this.props.setTotalCount(response.data.totalCount)
+            })
+    }
+
+    onPageChange = (p:number) => {
+        this.props.setCurrentPage(p)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items)
             })
     }
+
+
     render() {
+        const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+        const pages = []
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
+        }
+
         return (
             <div>
+                <div>
+                    {
+                        pages.map( p => {
+                            return <span onClick={()=> this.onPageChange(p)}>{p + " "}</span>
+                        })
+                    }
+                    {/*<span className={style.selectedPage}>1</span>*/}
+                    {/*<span>2</span>*/}
+                    {/*<span>3</span>*/}
+                    {/*<span>4</span>*/}
+                    {/*<span>5</span>*/}
+                </div>
                 {
-                    this.props.users.map((u: any) => <div key={u.id}>
+                    this.props.usersPage.users.map((u: any) => <div key={u.id}>
                     <span>
                         <div>
                             <img className={style.avatar}

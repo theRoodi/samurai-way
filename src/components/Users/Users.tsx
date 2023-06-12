@@ -1,20 +1,13 @@
 import React from 'react';
-import {UserType} from '../../state/user-reducer';
 import style from './Users.module.css'
 import axios from 'axios';
+import {UsersStateType} from './UsersContainer';
 
-export type PropsUsersType = {
-    users: Array<UserType>
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
-    setUsers: (users: Array<UserType>) => void
-}
-
-export const Users = (props: PropsUsersType) => {
+export const Users = (props: UsersStateType) => {
 
     const getUsers = () => {
 
-        if (props.users.length === 0) {
+        if (props.usersPage.users.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users')
                 .then(response => {
                     props.setUsers(response.data.items)
@@ -26,7 +19,7 @@ export const Users = (props: PropsUsersType) => {
         <div>
             <button onClick={getUsers}>Get users</button>
             {
-                props.users.map(u => <div key={u.id}>
+                props.usersPage.users.map(u => <div key={u.id}>
                     <span>
                         <div>
                             <img className={style.avatar}
