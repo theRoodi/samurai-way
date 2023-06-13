@@ -1,6 +1,6 @@
 import React from 'react';
 import {RootStateType} from '../../../state/state';
-import {addPostAC, updateNewPostTextAC} from '../../../state/profileReducer';
+import {addPost, updateNewPostText} from '../../../state/profileReducer';
 import {MyPosts} from './MyPosts';
 import {connect} from 'react-redux';
 
@@ -11,15 +11,15 @@ const mapStateToProps = (state: RootStateType) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        updateNewPostText: (newText: string) => {
-            dispatch(updateNewPostTextAC(newText))
-        },
-        addPost: () => {
-            dispatch(addPostAC())
-        }
-    }
-}
+// const mapDispatchToProps = (dispatch: any) => {
+//     return {
+//         updateNewPostText: (newText: string) => {
+//             dispatch(updateNewPostText(newText))
+//         },
+//         addPost: () => {
+//             dispatch(addPost())
+//         }
+//     }
+// }
 
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+export const MyPostsContainer = connect(mapStateToProps, {updateNewPostText, addPost})(MyPosts)

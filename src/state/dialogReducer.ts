@@ -1,4 +1,4 @@
-import {AddPostActionType, UpdatePostTextActionType} from './profileReducer';
+import {AddPostActionType, SetUserProfileActionType, UpdatePostTextActionType} from './profileReducer';
 import {v1} from 'uuid';
 
 export type DialogsType = {
@@ -10,11 +10,16 @@ export type MessagesType = {
     message: string
 }
 
-type ActionType = AddMessageActionType | UpdateMessageTextActionType | AddPostActionType | UpdatePostTextActionType
+type ActionType =
+    AddMessageActionType
+    | UpdateMessageTextActionType
+    | AddPostActionType
+    | UpdatePostTextActionType
+    | SetUserProfileActionType
 
-export type AddMessageActionType = ReturnType<typeof addMessageAC>
+export type AddMessageActionType = ReturnType<typeof addMessage>
 
-export type UpdateMessageTextActionType = ReturnType<typeof updateNewMessageTextAC>
+export type UpdateMessageTextActionType = ReturnType<typeof updateNewMessageText>
 
 export type InitialStateType = typeof initialState
 
@@ -35,7 +40,7 @@ const initialState = {
     ] as Array<MessagesType>,
     newMessageText: ''
 }
-export const dialogReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType=> {
+export const dialogReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case ADD_MESSAGE: {
             const newMessage: MessagesType = {
@@ -45,19 +50,19 @@ export const dialogReducer = (state: InitialStateType = initialState, action: Ac
             return {...state, newMessageText: '', messages: [newMessage, ...state.messages]}
         }
         case UPDATE_TEXT_MESSAGE: {
-            return  {...state, newMessageText: action.newText}
+            return {...state, newMessageText: action.newText}
         }
         default:
             return state
     }
 }
 
-export const addMessageAC = () => {
+export const addMessage = () => {
     return {
         type: 'ADD-MESSAGE'
     } as const
 }
 
-export const updateNewMessageTextAC = (text: string) => {
+export const updateNewMessageText = (text: string) => {
     return {type: 'UPDATE-TEXT-MESSAGE', newText: text} as const
 }

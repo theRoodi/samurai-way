@@ -15,10 +15,35 @@ export type PostType = {
     message: string
     likes: number
 }
+type ProfileContactType = {
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: string
+    github: string
+    mainLink: string
+}
+
+type ProfilePhotoType = {
+    small: string
+    large: string
+}
+type ProfileType = {
+    aboutMe: string
+    contacts: ProfileContactType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: ProfilePhotoType
+}
 
 export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
+    profile: ProfileType | null
 }
 
 export type DialogPageType = {
@@ -48,7 +73,8 @@ export const store: StoreType= {
                 {id: v1(), message: 'How are you', likes: 7},
                 {id: v1(), message: 'Hello world', likes: 23}
             ],
-            newPostText: ''
+            newPostText: '',
+            profile: null
         },
         messagePage: {
             dialogs: [

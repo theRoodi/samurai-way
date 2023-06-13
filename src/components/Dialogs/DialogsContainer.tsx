@@ -1,9 +1,8 @@
 import React from 'react';
-import {RootStateType } from '../../state/state';
-import {addMessageAC, updateNewMessageTextAC} from '../../state/dialogReducer';
+import {RootStateType} from '../../state/state';
+import {addMessage, updateNewMessageText} from '../../state/dialogReducer';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
-
 
 
 const mapStateToProps = (state: RootStateType) => {
@@ -14,15 +13,4 @@ const mapStateToProps = (state: RootStateType) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
-    return{
-        addMessage: () => {
-            dispatch(addMessageAC())
-        },
-        updateNewMessageText: ( newText:string) => {
-            dispatch(updateNewMessageTextAC(newText))
-        }
-    }
-}
-
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export const DialogsContainer = connect(mapStateToProps, {addMessage, updateNewMessageText})(Dialogs)

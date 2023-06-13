@@ -10,4 +10,5 @@ const reducers = combineReducers({
     messagePage: dialogReducer,
     usersPage: userReducer
 })
+
 export const store = createStore(reducers)
