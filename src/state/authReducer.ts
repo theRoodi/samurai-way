@@ -22,7 +22,7 @@ const initialState = {
     login: null,
     isAuth: false
 }
-export const authReducer = (state: InitialStateType = initialState, action: any) => {
+export const authReducer = (state: InitialStateType = initialState, action: ActionType) => {
    switch (action.type) {
         case SET_USER_DATA:
             return{

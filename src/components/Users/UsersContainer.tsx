@@ -72,7 +72,8 @@ export class UsersContainer extends React.Component<any, any> {
 
     componentDidMount() {
         this.props.setToggle(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+            {withCredentials: true})
             .then(response => {
                 this.props.setToggle(false)
                 this.props.setUsers(response.data.items)
@@ -83,7 +84,8 @@ export class UsersContainer extends React.Component<any, any> {
     onPageChange = (p: number) => {
         this.props.setToggle(true)
         this.props.setCurrentPage(p)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`,
+            {withCredentials: true})
             .then(response => {
                 this.props.setToggle(false)
                 this.props.setUsers(response.data.items)
@@ -95,7 +97,7 @@ export class UsersContainer extends React.Component<any, any> {
 
         return <>
             {this.props.isFetching
-                ? <Preloader />
+                ? <Preloader/>
                 : <Users totalUsersCount={this.props.totalUsersCount}
                          pageSize={this.props.pageSize}
                          onPageChange={this.onPageChange}
