@@ -1,8 +1,7 @@
 import React from 'react';
 import {Profile} from './Profile';
-import axios from 'axios';
 import {connect} from 'react-redux';
-import {ProfileType, setUserProfile} from '../../state/profileReducer';
+import {getProfile, ProfileType, setUserProfile} from '../../state/profileReducer';
 import {AppStateType} from '../../redux/redux-store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 
@@ -22,12 +21,7 @@ type PropsType = RouteComponentProps<PathParamType> & MapPropsType
 export class ProfileContainer extends React.Component<any, any> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId
-        if (!userId) userId = 9547
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => {
-                this.props.setUserProfile(response.data)
-            })
+        this.props.getProfile(this.props.match.params.userId)
     }
 
     render() {
@@ -44,4 +38,4 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 
 const ProfileWithURL = withRouter(ProfileContainer)
-export default connect(mapStateToProps, {setUserProfile})(ProfileWithURL)
+export default connect(mapStateToProps, {setUserProfile, getProfile})(ProfileWithURL)

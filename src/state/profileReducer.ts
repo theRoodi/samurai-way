@@ -1,5 +1,7 @@
 import {PostType} from './state';
 import {v1} from 'uuid';
+import {Dispatch} from 'redux';
+import {profileAPI } from '../api/api';
 
 type ProfileContactType = {
     facebook: string
@@ -89,4 +91,15 @@ export const updateNewPostText = (text: string): UpdatePostTextActionType => {
 }
 export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => {
     return {type: 'SET-USER-PROFILE', profile}
+}
+
+export const getProfile = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        if (!userId) userId = 9547
+        profileAPI.getProfile(userId)
+            .then(data => {
+                dispatch(setUserProfile(data))
+            })
+
+    }
 }
