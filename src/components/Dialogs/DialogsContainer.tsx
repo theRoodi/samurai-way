@@ -1,11 +1,13 @@
 import React from 'react';
-import {RootStateType} from '../../state/state';
 import {addMessage, updateNewMessageText} from '../../state/dialogReducer';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
+import {AppStateType} from '../../redux/redux-store';
+import {authRedirect} from '../../hoc/AuthRedirect';
+import {compose} from 'redux';
 
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         dialogs: state.messagePage.dialogs,
         messages: state.messagePage.messages,
@@ -13,4 +15,7 @@ const mapStateToProps = (state: RootStateType) => {
     }
 }
 
-export const DialogsContainer = connect(mapStateToProps, {addMessage, updateNewMessageText})(Dialogs)
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {addMessage, updateNewMessageText}),
+    authRedirect)
+(Dialogs)

@@ -9,6 +9,7 @@ import {AppStateType} from '../../redux/redux-store';
 import {Users} from './Users';
 import React from 'react';
 import {Preloader} from '../common/Preloader/Preloader';
+import {compose} from 'redux';
 
 type MapStatePropsType = {
     usersPage: InitialStateType
@@ -96,7 +97,7 @@ export class UsersContainer extends React.Component<any, any> {
     }
 }
 
-export default connect(mapStateToProps,
-    {
-        setCurrentPage, setFollowing, getUsers, follow, unfollow
-    })(UsersContainer)
+export default compose<React.ComponentType>(
+    connect(mapStateToProps,
+        {setCurrentPage, setFollowing, getUsers, follow, unfollow})
+)(UsersContainer)

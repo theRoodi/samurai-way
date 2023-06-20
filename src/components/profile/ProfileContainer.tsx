@@ -1,9 +1,11 @@
 import React from 'react';
 import {Profile} from './Profile';
 import {connect} from 'react-redux';
-import {getProfile, ProfileType, setUserProfile} from '../../state/profileReducer';
+import {getProfile, ProfileType} from '../../state/profileReducer';
 import {AppStateType} from '../../redux/redux-store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {authRedirect} from '../../hoc/AuthRedirect';
+import {compose} from 'redux';
 
 type PathParamType = {
     userId: string
@@ -36,6 +38,8 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         profile: state.profilePage.profile
     }
 }
-
-const ProfileWithURL = withRouter(ProfileContainer)
-export default connect(mapStateToProps, {setUserProfile, getProfile})(ProfileWithURL)
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {getProfile}),
+    withRouter,
+    authRedirect
+)(ProfileContainer)

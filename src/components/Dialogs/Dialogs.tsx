@@ -5,12 +5,20 @@ import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
 import {DialogsType, MessagesType} from '../../state/dialogReducer';
 
+export type AuthPropsType = {
+    userId: number,
+    email: string,
+    login: string,
+    isAuth: boolean
+}
+
 type PropsType = {
     addMessage: () => void
     updateNewMessageText: (newText: string) => void
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
     newMessageText: string
+    auth: AuthPropsType
 }
 export const Dialogs = (props: PropsType) => {
     const dialogsElements = props.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name}/>)
@@ -22,7 +30,6 @@ export const Dialogs = (props: PropsType) => {
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.updateNewMessageText(e.currentTarget.value)
     }
-
     return (
         <div className={style.dialogs}>
             <div className={style.dialogItems}>
