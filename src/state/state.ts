@@ -44,6 +44,7 @@ export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
     profile: ProfileType | null
+    status: string
 }
 
 export type DialogPageType = {
@@ -74,7 +75,8 @@ export const store: StoreType= {
                 {id: v1(), message: 'Hello world', likes: 23}
             ],
             newPostText: '',
-            profile: null
+            profile: null,
+            status: ''
         },
         messagePage: {
             dialogs: [
@@ -103,7 +105,7 @@ export const store: StoreType= {
     },
     dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.messagePage = dialogReducer(this._state.messagePage, action)
+        // this._state.messagePage = dialogReducer(this._state.messagePage, action)
         this._callSubscriber(this._state)
     }
 
