@@ -17,7 +17,7 @@ export const Login = () => {
         </div>
     )
 }
-export const LoginForm: React.FC<InjectedFormProps<FromDataType>>  = (props) => {
+export const LoginForm: React.FC<InjectedFormProps<FromDataType>> = (props) => {
     return (
         <div>
             <form onSubmit={props.handleSubmit}>
@@ -28,9 +28,10 @@ export const LoginForm: React.FC<InjectedFormProps<FromDataType>>  = (props) => 
                 <div><Field placeholder={'Password'}
                             component={'input'} name="password"
                             type="password"/></div>
-                <div><Field  component={'input'}
-                             type="checkbox"
-                             name="rememberMe"/>remember me</div>
+                <div><Field component={'input'}
+                            type="checkbox"
+                            name="rememberMe"/>remember me
+                </div>
                 <div>
                     <button>Login</button>
                 </div>

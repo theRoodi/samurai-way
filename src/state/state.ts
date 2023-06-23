@@ -1,5 +1,4 @@
-import {ActionType, profileReducer } from './profileReducer';
-import { dialogReducer} from './dialogReducer';
+import {ActionType, profileReducer} from './profileReducer';
 import {v1} from 'uuid';
 
 type DialogsType = {
@@ -54,7 +53,7 @@ export type DialogPageType = {
 }
 
 export type RootStateType = {
-    profilePage : ProfilePageType
+    profilePage: ProfilePageType
     messagePage: DialogPageType
 }
 
@@ -66,7 +65,7 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionType) => void
 }
-export const store: StoreType= {
+export const store: StoreType = {
     _state: {
         profilePage: {
             posts: [

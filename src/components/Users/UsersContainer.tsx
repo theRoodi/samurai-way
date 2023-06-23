@@ -1,9 +1,12 @@
 import {connect} from 'react-redux';
 import {
+    follow,
     getUsers,
     InitialStateType,
-    setCurrentPage, setFollowing,
-    UserType, follow, unfollow
+    setCurrentPage,
+    setFollowing,
+    unfollow,
+    UserType
 } from '../../state/user-reducer';
 import {AppStateType} from '../../redux/redux-store';
 import {Users} from './Users';

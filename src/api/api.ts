@@ -41,7 +41,7 @@ export const profileAPI = {
                 .then(response => response.data)
         )
     },
-    updateStatus(status:string) {
+    updateStatus(status: string) {
         return (
             instance.put(`/profile/status`, {status})
                 .then(response => response.data)

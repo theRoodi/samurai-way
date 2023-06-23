@@ -18,11 +18,12 @@ export class ProfileStatus extends Component<any> {
     }
 
 
-    onStatusChange = (e:ChangeEvent<HTMLInputElement>) => {
+    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             status: e.currentTarget.value
         })
     }
+
     componentDidUpdate(prevProps: any, prevState: any) {
         if (prevProps.status !== this.props.status) {
             this.setState({
@@ -37,7 +38,7 @@ export class ProfileStatus extends Component<any> {
                 <div>
                     {!this.state.editMode &&
                         <div>
-                            <span onDoubleClick={this.activateMode }>
+                            <span onDoubleClick={this.activateMode}>
                                 {this.props.status || '-------'}
                             </span>
                         </div>}
@@ -45,7 +46,7 @@ export class ProfileStatus extends Component<any> {
                         <div>
                             <input onChange={this.onStatusChange}
                                    value={this.state.status}
-                                   onBlur={this.deactivateMode }
+                                   onBlur={this.deactivateMode}
                                    autoFocus/>
                         </div>}
                 </div>

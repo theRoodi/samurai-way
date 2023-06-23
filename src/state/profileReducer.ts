@@ -1,7 +1,7 @@
 import {PostType} from './state';
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
-import {profileAPI } from '../api/api';
+import {profileAPI} from '../api/api';
 
 type ProfileContactType = {
     facebook: string
@@ -45,7 +45,11 @@ export type SetUserStatusActionType = {
     status: string
 }
 
-export type ActionType = AddPostActionType | UpdatePostTextActionType | SetUserProfileActionType | SetUserStatusActionType
+export type ActionType =
+    AddPostActionType
+    | UpdatePostTextActionType
+    | SetUserProfileActionType
+    | SetUserStatusActionType
 
 type InitialStateType = {
     posts: Array<PostType>
