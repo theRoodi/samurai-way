@@ -27,15 +27,15 @@ export const Users = (props: PropsType) => {
         <div>
             <div>
                 {
-                    pages.map(p => {
-                        return <span className={props.currentPage === p ? style.selectedPage : ''}
+                    pages.map((p, i) => {
+                        return <span key={i} className={props.currentPage === p ? style.selectedPage : ''}
                                      onClick={() => props.onPageChange(p)}>{p + ' '}</span>
                     })
                 }
             </div>
             {
                 props.usersPage.users.map((u: UserType) => <div key={u.id}>
-                    <div key={u.id}>
+                    <div>
                         <span>
                             <div>
                                 <NavLink to={`/profile/${u.id}`}>

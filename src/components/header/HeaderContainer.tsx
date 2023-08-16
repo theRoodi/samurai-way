@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header} from './Header';
 import {connect} from 'react-redux';
-import {auth} from '../../state/authReducer';
+import {auth, logout} from '../../state/authReducer';
 import {compose} from 'redux';
 
 type MapStatePropsType = {
@@ -21,7 +21,7 @@ export class HeaderContainer extends React.Component<any, any> {
         )
     }
 }
-
+// 76-78 lessons!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const mapStateToProps = (state: any): MapStatePropsType => {
     return {
         isAuth: state.auth.isAuth,
@@ -29,4 +29,4 @@ const mapStateToProps = (state: any): MapStatePropsType => {
     }
 }
 
-export default compose(connect(mapStateToProps, {auth}))(HeaderContainer)
+export default compose(connect(mapStateToProps, {auth, logout}))(HeaderContainer)

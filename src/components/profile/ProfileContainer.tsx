@@ -14,6 +14,7 @@ type PathParamType = {
 type MapStatePropsType = {
     profile: ProfileType | null
     status: string
+
 }
 type MapDispatchPropsType = {
     setUserProfile: (profile: ProfileType) => void

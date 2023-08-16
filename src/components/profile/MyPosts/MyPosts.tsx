@@ -1,11 +1,13 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {Post} from './Post/Post';
 import style from './MyPosts.module.css'
 import {PostType} from '../../../state/state';
+import {Field, reduxForm} from 'redux-form';
+import {maxLengthCreator, requiredFiled} from '../../../utils/validator';
+import {FormControl} from '../../common/FormsControl/FormsControl';
 
 type PropsType = {
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    addPost: (value: string) => void
     posts: Array<PostType>
     newPostText: string
 
@@ -15,26 +17,15 @@ type PropsType = {
 export const MyPosts = (props: PropsType) => {
     const postsElements = props.posts.map(m => <Post key={m.id} message={m.message} likes={m.likes}/>)
 
-    const onAddPost = () => {
-        props.addPost()
-    }
-    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        const newText = e.currentTarget.value
-        props.updateNewPostText(newText)
+    const onAddPost = (value: any) => {
+        props.addPost(value.newPostText)
     }
 
     return (
         <div className={style.postsBlock}>
             <h3>my post</h3>
             <div>
-                <div>
-                    <div>
-                        <textarea placeholder={'Type your post'} value={props.newPostText} onChange={onChangeHandler}/>
-                    </div>
-                    <div>
-                        <button onClick={onAddPost}>Add post</button>
-                    </div>
-                </div>
+                <PostFormRedux onSubmit={onAddPost}/>
                 <div className={style.posts}>
                     {postsElements}
                 </div>
@@ -42,3 +33,22 @@ export const MyPosts = (props: PropsType) => {
         </div>
     )
 }
+
+const maxLength = maxLengthCreator(30)
+const PostForm = (props: any) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field placeholder="Type your post"
+                       component={FormControl}
+                       child="textarea"
+                       name="newPostText"
+                       validate={[requiredFiled, maxLength]}/>
+            </div>
+            <div>
+                <button>Add post</button>
+            </div>
+        </form>
+    )
+}
+const PostFormRedux = reduxForm({form: 'postForm'})(PostForm)

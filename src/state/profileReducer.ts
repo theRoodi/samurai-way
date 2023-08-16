@@ -30,7 +30,8 @@ export type ProfileType = {
 }
 
 export type AddPostActionType = {
-    type: 'ADD-POST'
+    type: 'ADD-POST',
+    newPostText: string
 }
 export type UpdatePostTextActionType = {
     type: 'UPDATE-TEXT-POST'
@@ -53,13 +54,11 @@ export type ActionType =
 
 type InitialStateType = {
     posts: Array<PostType>
-    newPostText: string
     profile: ProfileType | null
     status: string
 }
 
 const ADD_POST = 'ADD-POST'
-const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_USER_STATUS = 'SET-USER-STATUS'
 
@@ -69,7 +68,6 @@ const initialState = {
         {id: v1(), message: 'How are you', likes: 7},
         {id: v1(), message: 'Hello world', likes: 23}
     ] as Array<PostType>,
-    newPostText: '',
     profile: null,
     status: ''
 }
@@ -78,13 +76,10 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
         case ADD_POST: {
             const newPost: PostType = {
                 id: v1(),
-                message: state.newPostText,
+                message: action.newPostText,
                 likes: 1
             }
-            return {...state, newPostText: '', posts: [newPost, ...state.posts]}
-        }
-        case UPDATE_TEXT_POST: {
-            return {...state, newPostText: action.newText};
+            return {...state, posts: [newPost, ...state.posts]}
         }
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile};
@@ -97,11 +92,8 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
     }
 }
 
-export const addPost = (): AddPostActionType => {
-    return {type: 'ADD-POST'}
-}
-export const updateNewPostText = (text: string): UpdatePostTextActionType => {
-    return {type: 'UPDATE-TEXT-POST', newText: text}
+export const addPost = (newPostText: string): AddPostActionType => {
+    return {type: 'ADD-POST', newPostText}
 }
 export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => {
     return {type: 'SET-USER-PROFILE', profile}
