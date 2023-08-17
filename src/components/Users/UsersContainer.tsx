@@ -13,6 +13,14 @@ import {Users} from './Users';
 import React from 'react';
 import {Preloader} from '../common/Preloader/Preloader';
 import {compose} from 'redux';
+import {
+    getCurrentPage,
+    getIsFetching,
+    getIsFollowing,
+    getPageSize,
+    getTotalUsersCount,
+    getUser
+} from '../../state/usersSelectors';
 
 type MapStatePropsType = {
     usersPage: InitialStateType
@@ -33,44 +41,27 @@ type MapDispatchPropsType = {
 
 export type UsersStateType = MapStatePropsType & MapDispatchPropsType
 
-const mapStateToProps = (state: AppStateType): MapStatePropsType => {
-    return {
-        usersPage: state.usersPage,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        isFollowing: state.usersPage.isFollowing
-    }
-}
-
-// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+// const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 //     return {
-//         follow: (userId: string) => {
-//             dispatch(followAC(userId))
-//         },
-//         unfollow: (userId: string) => {
-//             dispatch(unfollowAC(userId))
-//         },
-//         setUsers: (users: Array<UserType>) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (currentPage: number) => {
-//             dispatch(setCurrentPageAC(currentPage))
-//         },
-//         setTotalCount: (totalCount: number) => {
-//             dispatch(setTotalCountAC(totalCount))
-//         },
-//         setToggle: (isFetching: boolean) => {
-//             dispatch(setToggleAC(isFetching))
-//         },
-//         setFollowing: (isFollowing: boolean, userId: string) => {
-//             dispatch(setFollowingAC(isFollowing, userId))
-//         }
-//
+//         usersPage: state.usersPage,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         isFollowing: state.usersPage.isFollowing
 //     }
 // }
 
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
+    return {
+        usersPage: getUser(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        isFollowing: getIsFollowing(state)
+    }
+}
 export class UsersContainer extends React.Component<any, any> {
 
     componentDidMount() {

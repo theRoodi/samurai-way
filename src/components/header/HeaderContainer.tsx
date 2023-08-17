@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header} from './Header';
 import {connect} from 'react-redux';
-import {auth, logout} from '../../state/authReducer';
+import {logout} from '../../state/authReducer';
 import {compose} from 'redux';
 
 type MapStatePropsType = {
@@ -11,17 +11,12 @@ type MapStatePropsType = {
 
 export class HeaderContainer extends React.Component<any, any> {
 
-    componentDidMount() {
-        this.props.auth()
-    }
-
     render() {
         return (
             <Header {...this.props}/>
         )
     }
 }
-// 76-78 lessons!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const mapStateToProps = (state: any): MapStatePropsType => {
     return {
         isAuth: state.auth.isAuth,
@@ -29,4 +24,4 @@ const mapStateToProps = (state: any): MapStatePropsType => {
     }
 }
 
-export default compose(connect(mapStateToProps, {auth, logout}))(HeaderContainer)
+export default compose(connect(mapStateToProps, {logout}))(HeaderContainer)

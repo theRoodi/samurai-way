@@ -125,6 +125,7 @@ export const setFollowing = (isFollowing: boolean, id: number) => {
 export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(setToggle(true))
+        dispatch(setCurrentPage(currentPage))
         usersAPI.getUsers(currentPage, pageSize)
             .then(data => {
                 dispatch(setToggle(false))
