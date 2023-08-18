@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Post} from './Post/Post';
 import style from './MyPosts.module.css'
 import {PostType} from '../../../state/state';
@@ -14,7 +14,8 @@ type PropsType = {
 }
 
 
-export const MyPosts = (props: PropsType) => {
+export const MyPosts = memo((props: PropsType) => {
+    console.log('RENDER')
     const postsElements = props.posts.map(m => <Post key={m.id} message={m.message} likes={m.likes}/>)
 
     const onAddPost = (value: any) => {
@@ -32,7 +33,7 @@ export const MyPosts = (props: PropsType) => {
             </div>
         </div>
     )
-}
+})
 
 const maxLength = maxLengthCreator(30)
 const PostForm = (props: any) => {
