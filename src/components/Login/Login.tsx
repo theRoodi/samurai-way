@@ -2,6 +2,7 @@ import {ReduxLoginForm} from './LoginForm';
 import {connect} from 'react-redux';
 import {login} from '../../state/authReducer';
 import {Redirect} from 'react-router-dom';
+import style from './Login.module.css'
 
 type FromDataType = {
     login: string
@@ -18,7 +19,11 @@ const Login = (props:any) => {
     }
 
     return (
-        <div>
+        <div className={style.container}>
+            <span className={style.infoBox}>For test this project
+                <br/> You can use this data
+                <br/> Login: <strong>free@samuraijs.com</strong>
+                <br/> Password: <strong>free</strong></span>
             <h1>Login</h1>
             <ReduxLoginForm onSubmit={onSubmit}/>
         </div>
