@@ -15,7 +15,6 @@ type PropsType = {
 
 
 export const MyPosts = memo((props: PropsType) => {
-    console.log('RENDER')
     const postsElements = props.posts.map(m => <Post key={m.id} message={m.message} likes={m.likes}/>)
 
     const onAddPost = (value: any) => {

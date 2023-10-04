@@ -6,6 +6,7 @@ import {AppStateType} from '../../redux/redux-store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {authRedirect} from '../../hoc/AuthRedirect';
 import {compose} from 'redux';
+import {PostType} from '../../state/state';
 
 type PathParamType = {
     userId: string
@@ -14,6 +15,8 @@ type PathParamType = {
 type MapStatePropsType = {
     profile: ProfileType | null
     status: string
+    authorizedUserId: number | null
+    isAuth: boolean
 
 }
 type MapDispatchPropsType = {
@@ -26,7 +29,12 @@ export class ProfileContainer extends React.Component<any, any> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId) userId = 9547
+        if (!userId) {
+            userId = this.props.authorizedUserId
+            if (!userId) {
+                this.props.history.push('/login')
+            }
+        }
         this.props.getProfile(userId)
         this.props.getStatus(userId)
     }
@@ -44,7 +52,9 @@ export class ProfileContainer extends React.Component<any, any> {
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        authorizedUserId: state.auth.userId,
+        isAuth: state.auth.isAuth
     }
 }
 export default compose<React.ComponentType>(
