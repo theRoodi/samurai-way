@@ -1,8 +1,7 @@
 import React from 'react';
-import style from './Users.module.css'
 import {InitialStateType, UserType} from '../../state/user-reducer';
-import {NavLink} from 'react-router-dom';
-import avatar from './../../assets/images/defaultAvatar.png'
+import {Paginator} from '../common/Paginator/Paginator';
+import {User} from './User';
 
 type PropsType = {
     totalUsersCount: number
@@ -17,47 +16,23 @@ type PropsType = {
     setFollowing: (isFollowing: boolean, id: number) => void
 }
 export const Users = (props: PropsType) => {
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    const pages = []
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
 
     return (
         <div>
-            <div>
-                {
-                    pages.map((p, i) => {
-                        return <span key={i} className={props.currentPage === p ? style.selectedPage : ''}
-                                     onClick={() => props.onPageChange(p)}>{p + ' '}</span>
-                    })
-                }
-            </div>
+            <Paginator totalUsersCount={props.totalUsersCount}
+                       pageSize={props.pageSize}
+                       currentPage={props.currentPage}
+                       onPageChange={props.onPageChange}
+                       portionSize={15}/>
+
             {
-                props.usersPage.users.map((u: UserType) => <div key={u.id}>
-                    <div>
-                        <span>
-                            <div>
-                                <NavLink to={`/profile/${u.id}`}>
-                                    <img className={style.avatar}
-                                         src={u.photos.small !== null ? u.photos.small : avatar}
-                                         alt="avatar"/>
-                                </NavLink>
-                                {u.followed
-                                    ? <button disabled={props.isFollowing.some(id => id === u.id)} onClick={() => {
-                                        props.unfollow(u.id)
-                                    }}>Unfollow</button>
-                                    : <button disabled={props.isFollowing.some(id => id === u.id)} onClick={() => {
-                                        props.follow(u.id)
-                                    }}>Follow</button>}
-                            </div>
-                         </span>
-                        <span>
-                            <div>{u.name}</div>
-                            <div>{u.status}</div>
-                        </span>
-                    </div>
-                </div>)
+                props.usersPage.users.map((u: UserType) => (
+                    <User key={u.id}
+                          user={u}
+                          isFollowing={props.isFollowing}
+                          follow={props.follow}
+                          unfollow={props.unfollow}/>
+                ))
             }
         </div>
     )

@@ -41,17 +41,6 @@ type MapDispatchPropsType = {
 
 export type UsersStateType = MapStatePropsType & MapDispatchPropsType
 
-// const mapStateToProps = (state: AppStateType): MapStatePropsType => {
-//     return {
-//         usersPage: state.usersPage,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         isFollowing: state.usersPage.isFollowing
-//     }
-// }
-
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         usersPage: getUser(state),
@@ -62,14 +51,17 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         isFollowing: getIsFollowing(state)
     }
 }
+
 export class UsersContainer extends React.Component<any, any> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        const {getUsers, currentPage, pageSize} = this.props
+        getUsers(currentPage, pageSize)
     }
 
     onPageChange = (p: number) => {
-        this.props.getUsers(p, this.props.pageSize)
+        const {getUsers, pageSize} = this.props
+        getUsers(p, pageSize)
     }
 
 

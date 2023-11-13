@@ -21,7 +21,8 @@ test("length posts plus one", () => {
 })
 
 test('length should be lower', () => {
-    const action = deletePost('0')
+    const postId = state.posts[0].id
+    const action = deletePost(postId)
     const newState = profileReducer(state, action)
 
     expect(newState.posts.length).toBe(2)

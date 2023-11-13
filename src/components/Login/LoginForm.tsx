@@ -8,10 +8,10 @@ type FromDataType = {
     password: string
     rememberMe: boolean
 }
-export const LoginForm: React.FC<InjectedFormProps<FromDataType>> = (props) => {
+export const LoginForm: React.FC<InjectedFormProps<FromDataType>> = ({handleSubmit, error}) => {
     return (
         <div>
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div><Field placeholder={'Login'}
                             component={FormControl}
                             child="input"
@@ -29,8 +29,8 @@ export const LoginForm: React.FC<InjectedFormProps<FromDataType>> = (props) => {
                             type="checkbox"
                             name="rememberMe"/>remember me
                 </div>
-                {props.error && <div className={style.formSummaryError}>
-                    {props.error}
+                {error && <div className={style.formSummaryError}>
+                    {error}
                 </div>}
                 <div>
                     <button>Login</button>

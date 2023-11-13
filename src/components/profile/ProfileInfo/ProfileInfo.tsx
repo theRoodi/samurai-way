@@ -3,7 +3,6 @@ import style from './ProfileInfo.module.css'
 import {Preloader} from '../../common/Preloader/Preloader';
 import {ProfileType} from '../../../state/profileReducer';
 import avatar from '../../../assets/images/defaultAvatar.png';
-import {ProfileStatus} from '../ProfileStatus/ProfileStatus';
 import {ProfileStatusHooks} from '../ProfileStatus/ProfileStatusHooks';
 
 export type PropsType = {

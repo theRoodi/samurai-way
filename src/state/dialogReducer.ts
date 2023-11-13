@@ -20,7 +20,7 @@ export type AddMessageActionType = ReturnType<typeof addMessage>
 
 export type InitialStateType = typeof initialState
 
-const ADD_MESSAGE = 'ADD-MESSAGE'
+const ADD_MESSAGE = 'dialog/ADD-MESSAGE'
 
 const initialState = {
     dialogs: [
@@ -51,7 +51,7 @@ export const dialogReducer = (state: InitialStateType = initialState, action: Ac
 
 export const addMessage = (newMessageText: string) => {
     return {
-        type: 'ADD-MESSAGE',
+        type: ADD_MESSAGE,
         newMessageText
     } as const
 }

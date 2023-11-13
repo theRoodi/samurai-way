@@ -6,7 +6,6 @@ import {AppStateType} from '../../redux/redux-store';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {authRedirect} from '../../hoc/AuthRedirect';
 import {compose} from 'redux';
-import {PostType} from '../../state/state';
 
 type PathParamType = {
     userId: string
@@ -25,7 +24,7 @@ type MapDispatchPropsType = {
 type MapPropsType = MapStatePropsType & MapDispatchPropsType
 type PropsType = RouteComponentProps<PathParamType> & MapPropsType
 
-export class ProfileContainer extends React.Component<any, any> {
+export class ProfileContainer extends React.Component<any, PropsType> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId
