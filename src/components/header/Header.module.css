@@ -1,16 +1,42 @@
 .header {
-    background-color: dodgerblue;
+    display: flex;
+    border: 1px solid #d7dadd;
     grid-area: h;
 }
-.header img {
-    width: 50px;
+.headerBlock {
+    display: flex;
+    margin: 0 auto;
+    width: 1500px;
+    justify-content: space-between;
+    align-items: center;
 }
-
+.header img {
+    margin-left: 50px;
+}
+.iconGroup {
+    cursor: pointer;
+    display: flex;
+    gap: 20px;
+}
+.userBlock {
+    display: flex;
+    align-items: center;
+}
 .loginBlock{
-    float: right;
+    align-items: center;
+    margin-right: 50px;
     padding: 15px;
 }
-
-.loginBlock a {
-    color: white;
+.loginBlock img {
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+.arrowDown {
+    cursor: pointer;
+    margin-left: 5px;
+}
+.btnOut{
+    margin-left: 10px;
 }

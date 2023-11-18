@@ -1,15 +1,27 @@
 .nav {
-    background-color: #1f8061;
+    border: 1px solid #d7dadd;
+    border-radius: 0 25px 25px 0;
+    background-color: white;
     grid-area: n;
     padding: 15px;
+
 }
 
 .item a{
     text-decoration: none;
-    color: white;
-    font-size: 25px;
+    color: #0e1218;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 10px;
+    margin-left: 5px;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
 }
-
-.item a.active {
-    color: gold;
+.item a:hover,
+.item a.active{
+    color: #6d9985;
+    background: #EEF2F6;
+    transition: background .3s;
 }

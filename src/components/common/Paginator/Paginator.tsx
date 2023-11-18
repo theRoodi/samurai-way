@@ -10,7 +10,7 @@ type Props = {
 
 
 }
-export const Paginator = ({totalUsersCount, currentPage, pageSize, onPageChange, portionSize = 10}: Props) => {
+export const Paginator: React.FC<Props> = ({totalUsersCount, currentPage, pageSize, onPageChange, portionSize = 10}) => {
     const pagesCount = Math.ceil(totalUsersCount / pageSize)
     const pages = []
     for (let i = 1; i <= pagesCount; i++) {

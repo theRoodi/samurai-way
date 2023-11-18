@@ -16,10 +16,6 @@ export const ProfileInfo = (props: PropsType) => {
     }
     return (
         <div>
-            <div>
-                <img src="https://codetheweb.blog/assets/img/posts/css-advanced-background-images/cover.jpg"
-                     alt="cover"/>
-            </div>
             <div className={style.descriptionBlock}>
                 <div><img src={props.profile.photos.small !== null ? props.profile.photos.small : avatar} alt=""/></div>
                 <div><b>Full Name:</b> {props.profile.fullName}</div>
