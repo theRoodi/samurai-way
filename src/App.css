@@ -7,21 +7,30 @@
     'h h'
     'n c';
 
-    grid-template-rows: 81px 1fr;
+    grid-template-rows: 90px 1fr;
     grid-template-columns: 1fr 9fr;
-    grid-gap: 65px;
+
+    /*display: flex;*/
+    /*flex-direction: column;*/
+
 
     color: #0e1218;
-
+    min-height: 100%;
+}
+.main {
+    /*flex: 1 0 auto;*/
+    /*position: relative;*/
+    /*padding-left: 80px;*/
 }
 
 .app-wrapper-content{
+    display: flex;
+    margin: 0 auto;
+    width: 1200px;
     border: 1px solid #d7dadd;
     border-radius: 25px;
-    grid-area: c;
+    /*grid-area: c;*/
+    align-content: center;
 
-}
-.app-wrapper-content img {
-    max-width: 100%;
 }
 

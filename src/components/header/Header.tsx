@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 import {Bell, ChevronDown, MessageCircle, Search} from 'lucide-react';
 import {useSelector} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
-import logo from '../../assets/images/logo3.svg'
+import logo from '../../assets/images/logo.svg'
 
 export const Header = (props: any) => {
 
