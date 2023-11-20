@@ -14,28 +14,39 @@ export const Header = (props: any) => {
     return (
         <header className={style.header}>
             <div className={style.headerBlock}>
-                <img src={logo} alt="logo"/>
+                <div className={style.headerContent}>
+                    <a className={style.headerLogo} href="#"><img src={logo} alt="logo"/></a>
 
 
-                <div className={style.userBlock}>
-                    <div className={style.iconGroup}>
-                        <Search size={25}/>
-                        <MessageCircle size={25}/>
-                        <Bell size={25}/>
+                    <div className={style.userIcon}>
+                        <div className={style.headerSearch}><Search size={25}/></div>
+                        <div className={style.iconGroup}>
+                            <a className={style.headerNavLink} href="#">
+                                <MessageCircle size={25} color={'#000'}/>
+                            </a>
+                            <a className={style.headerNavLink} href="#">
+                                <Bell size={25} color={'#000'}/>
+                            </a>
+                        </div>
                     </div>
                     <div className={style.loginBlock}>
                         {
                             props.isAuth
                                 ? <>
-                                    <img src={userPhotoSmall} alt=""/>
-                                    {props.login}
-                                    <ChevronDown size={10} className={style.arrowDown}/>
-                                    <button className={style.btnOut} onClick={props.logout}>Logout</button>
+                                    <div className={style.headerUserImg}>
+                                        <img className={style.headerImg} src={userPhotoSmall} alt=""/>
+                                    </div>
+                                    <div className={style.headerUserBlock}>
+                                        {props.login}
+                                        <ChevronDown size={10} className={style.arrowDown}/>
+                                        <button className={style.btnOut} onClick={props.logout}>Logout</button>
+                                    </div>
                                 </>
                                 : <NavLink to={'/login'}>Login</NavLink>
                         }
 
                     </div>
+
                 </div>
             </div>
         </header>

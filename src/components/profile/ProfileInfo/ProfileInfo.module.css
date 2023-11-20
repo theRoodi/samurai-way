@@ -100,3 +100,7 @@
     border: 1px solid #d7dadd;
     transition: background .3s, border .3s;
 }
+
+.userSocialLink:hover {
+    background-color: #6d9985;
+}

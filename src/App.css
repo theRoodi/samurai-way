@@ -1,26 +1,22 @@
 .app-wrapper {
-    margin: 0 auto;
-    display: grid;
-    width: 100%;
-
-    grid-template-areas:
-    'h h'
-    'n c';
-
-    grid-template-rows: 90px 1fr;
-    grid-template-columns: 1fr 9fr;
-
-    /*display: flex;*/
-    /*flex-direction: column;*/
+    display: flex;
+    flex-direction: column;
 
 
     color: #0e1218;
     min-height: 100%;
 }
-.main {
-    /*flex: 1 0 auto;*/
-    /*position: relative;*/
-    /*padding-left: 80px;*/
+img {
+    vertical-align: top;
+}
+a, a:visited {
+    text-decoration: none;
+}
+
+.wrapperMain {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 
 .app-wrapper-content{
@@ -29,7 +25,6 @@
     width: 1200px;
     border: 1px solid #d7dadd;
     border-radius: 25px;
-    /*grid-area: c;*/
     align-content: center;
 
 }

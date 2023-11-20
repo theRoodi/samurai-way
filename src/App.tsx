@@ -29,14 +29,16 @@ class App extends React.Component<any> {
         return (
             <div className="app-wrapper">
                 <HeaderContainer/>
-                <Navbar/>
-                <div className={'app-wrapper-content'}>
-                    <Route path="/messages" render={withSuspense(DialogsContainer)}/>
-                    <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
-                    <Route path="/users" render={withSuspense(UsersContainer)}/>
-                    <Route path="/music" render={() => <Music/>}/>
-                    <Route path="/settings" render={() => <Settings/>}/>
-                    <Route path="/login" render={() => <Login/>}/>
+                <div className={'wrapperMain'}>
+                    <Navbar/>
+                    <div className={'app-wrapper-content'}>
+                        <Route path="/messages" render={withSuspense(DialogsContainer)}/>
+                        <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
+                        <Route path="/users" render={withSuspense(UsersContainer)}/>
+                        <Route path="/music" render={() => <Music/>}/>
+                        <Route path="/settings" render={() => <Settings/>}/>
+                        <Route path="/login" render={() => <Login/>}/>
+                    </div>
                 </div>
             </div>
         );
