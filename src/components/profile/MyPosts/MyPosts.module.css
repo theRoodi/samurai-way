@@ -1,8 +1,55 @@
-.posts{
-    margin-top: 10px;
+.userContent {
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-.postsBlock {
-    padding: 10px;
+.userTabs {
+    display: flex;
+    align-items: center;
+    padding-bottom: 40px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #4b515a;
+    gap: 25px;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    border-bottom: 1px solid #d7dadd;
+}
+
+.userTab {
+    cursor: pointer;
+    color: #7d838c;
+    text-align: center;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color .3s;
+}
+.userTab:hover,
+.userTabActive {
     color: #0e1218;
+}
+.userTab span {
+    background: #eef2f6;
+    color: #7d838c;
+    border-radius: 4px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    padding: 1px 12px;
+    min-width: 32px;
+    transition: background .3s, color .3s;
 }

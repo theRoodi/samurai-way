@@ -1,9 +1,12 @@
 .nav {
-    border: 1px solid #d7dadd;
-    border-radius: 0 25px 25px 0;
+    /*border-radius: 0 25px 25px 0;*/
     background-color: white;
-    grid-area: n;
-    padding: 15px;
+    height: 100%;
+    border-right: 1px solid #d7dadd;
+    width: 100%;
+    padding: 40px 12px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 
 }
 

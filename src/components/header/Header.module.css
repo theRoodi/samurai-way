@@ -1,7 +1,8 @@
 .header {
+    background-color: #fff;
     padding: 16px 0;
     border-bottom: 1px solid #d7dadd;
-    padding-left: 80px;
+    margin-left: -70px;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -9,7 +10,6 @@
 .headerBlock {
     max-width: 1210px;
     margin: 0 auto;
-    padding: 0 15px;
 }
 .headerContent {
     display: flex;
@@ -25,6 +25,7 @@
 .userIcon{
     display: flex;
     align-items: center;
+
 }
 .headerSearch {
     margin-right: 20px;
@@ -37,10 +38,10 @@
     cursor: pointer;
 }
 .headerNavLink {
+    display: flex;
     position: relative;
     width: 24px;
     height: 24px;
-    display: flex;
     justify-content: center;
     align-items: center;
 }

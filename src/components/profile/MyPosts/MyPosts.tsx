@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import {Post} from './Post/Post';
 import style from './MyPosts.module.css'
 import {PostType} from '../../../state/state';
@@ -15,20 +15,66 @@ type PropsType = {
 
 
 export const MyPosts = memo((props: PropsType) => {
-    const postsElements = props.posts.map(m => <Post key={m.id} message={m.message} likes={m.likes}/>)
+    const postsElements = props.posts.map(m => <div><Post key={m.id} message={m.message} likes={m.likes}/></div>)
+    const [active, setActive] = useState(1);
+    const [toggle, setToggle] = useState(1)
 
+    const updateToggle = (id: number) => {
+        setToggle(id)
+        setActive(id);
+    }
     const onAddPost = (value: any) => {
         props.addPost(value.newPostText)
     }
 
     return (
-        <div className={style.postsBlock}>
-            <h3>my post</h3>
+        <div className={style.userContent}>
+            <div className={style.userTabs}>
+                <div className={active === 1
+                    ? `${style.userTab} ${style.userTabActive}`
+                    : style.userTab}
+                     onClick={() => updateToggle(1)}>
+                    Posts
+                </div>
+                <div className={active === 2
+                    ? `${style.userTab} ${style.userTabActive}`
+                    : style.userTab}
+                     onClick={() => updateToggle(2)}>
+                    About
+                </div>
+                <div className={active === 3
+                    ? `${style.userTab} ${style.userTabActive}`
+                    : style.userTab}
+                     onClick={() => updateToggle(3)}>
+                    Friends
+                    <span>10</span>
+                </div>
+                <div className={active === 4
+                    ? `${style.userTab} ${style.userTabActive}`
+                    : style.userTab}
+                     onClick={() => updateToggle(4)}>
+                    Groups
+                    <span>1</span>
+                </div>
+            </div>
             <div>
-                <PostFormRedux onSubmit={onAddPost}/>
-                <div className={style.posts}>
+                {active === 1 && <div className={''}>
+                    <PostFormRedux onSubmit={onAddPost}/>
                     {postsElements}
                 </div>
+                }
+                {active === 2 && <div className={''}>
+                    About
+                </div>
+                }
+                {active === 3 && <div className={''}>
+                    Friends
+                </div>
+                }
+                {active === 4 && <div className={''}>
+                    Groups
+                </div>
+                }
             </div>
         </div>
     )

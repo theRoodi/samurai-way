@@ -4,7 +4,8 @@ import {Preloader} from '../../common/Preloader/Preloader';
 import {ProfileType} from '../../../state/profileReducer';
 import avatar from '../../../assets/images/defaultAvatar.png';
 import {ProfileStatusHooks} from '../ProfileStatus/ProfileStatusHooks';
-import {Facebook, Github, Globe, Mail, Send, Twitter} from 'lucide-react';
+import {Github, Globe, Heart, Mail, MailPlus, Send, Twitter} from 'lucide-react';
+import {useParams} from 'react-router-dom';
 
 export type PropsType = {
     profile: ProfileType
@@ -12,21 +13,30 @@ export type PropsType = {
     updateStatus: (status: string) => void
 }
 export const ProfileInfo = (props: PropsType) => {
+
+    // @ts-ignore
+    const {userId} = useParams()
+
     if (!props.profile) {
         return <Preloader/>
     }
     return (
-        <div>
+        <div className={style.contentContainer}>
             <div className={style.userBlock}>
                 <div className={style.avatar}>
-                    <img src={props.profile.photos.small !== null ? props.profile.photos.small : avatar} alt=""/>
+                    <img className={style.img}
+                         src={props.profile.photos.small !== null ? props.profile.photos.small : avatar} alt=""/>
                 </div>
                 <div className={style.descriptionBlock}>
-                    <p className={style.userStatus}>
-                        <ProfileStatusHooks status={props.status} updateStatus={props.updateStatus}/>
+                    <p className={style.userLookingJob}>
+                        {props.profile.lookingForAJobDescription}
+
                     </p>
                     <p className={style.userName}>{props.profile.fullName}</p>
-                    <p className={props.profile.lookingForAJob ? style.userLookingJob : ''}>{props.profile.lookingForAJob && props.profile.lookingForAJobDescription}</p>
+                    <p className={style.userStatus}>
+                        <ProfileStatusHooks status={props.status}
+                                            updateStatus={props.updateStatus}/>
+                    </p>
                     <ul className={style.userList}>
                         <li className={style.userListItem}>
                             <p className={style.userText}>Online</p>
@@ -68,6 +78,18 @@ export const ProfileInfo = (props: PropsType) => {
                                 </a>
                             </li>
                         </ul>
+                        {userId
+                            ? <div className={style.buttons}>
+                                <a className={style.buttonLink} href="#">
+                                    <Heart size={17} color={'#6d9985'}/>
+                                    <span>Follow</span>
+                                </a>
+                                <a className={style.buttonLink} href="#">
+                                    <MailPlus size={17} color={'#6d9985'}/>
+                                    <span>Send message</span>
+                                </a>
+                            </div>
+                            : ''}
                     </div>
                 </div>
             </div>

@@ -1,8 +1,82 @@
-.item {
-    color: #0e1218;
+.postItems {
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 0 15px;
+    border-radius: 25px;
+    background-color: #eef2f6;
+    position: relative;
+    padding-top: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+    padding-left: 60px;
+    margin-top: 25px;
+    border: 1px solid red;
 }
-
-.item img{
-    width: 25px;
-    border-radius: 50%;
+.postItem {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    gap: 20px;
+    border: 1px solid red;
+}
+.postItemTitle {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 25px;
+    position: relative;
+}
+.postItemTitleLink {
+    width: 80px;
+    height: 80px;
+    max-width: 80px;
+    max-height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 100%;
+}
+.postItemTitleImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 1px solid #575759;
+}
+.postItemTitleBox {
+    margin-right: 45px;
+    margin-bottom: 8px;
+    color: #7d838c;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+}
+.postItemTitleName a{
+    color: #0e1218;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+    padding-right: 10px;
+}
+.postItemTitleDate {
+    color: #7d838c;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+.postItemTitleOption {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.postItemTitleOptionBtn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    cursor: pointer;
 }

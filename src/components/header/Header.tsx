@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Header.module.css'
-import {NavLink} from 'react-router-dom';
+import {NavLink, useParams} from 'react-router-dom';
 import {Bell, ChevronDown, MessageCircle, Search} from 'lucide-react';
 import {useSelector} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
@@ -9,6 +9,12 @@ import logo from '../../assets/images/logo.svg'
 export const Header = (props: any) => {
 
     const userPhotoSmall = useSelector((state: AppStateType) => state.profilePage.profile?.photos.small)
+    const currentUserId = props.userId
+    // @ts-ignore
+    const {userId} = useParams()
+
+    console.log(userId)
+    console.log(currentUserId)
 
 
     return (
@@ -34,7 +40,7 @@ export const Header = (props: any) => {
                             props.isAuth
                                 ? <>
                                     <div className={style.headerUserImg}>
-                                        <img className={style.headerImg} src={userPhotoSmall} alt=""/>
+                                        <img className={style.headerImg} src={userId === currentUserId  ? userPhotoSmall : ''} alt=""/>
                                     </div>
                                     <div className={style.headerUserBlock}>
                                         {props.login}

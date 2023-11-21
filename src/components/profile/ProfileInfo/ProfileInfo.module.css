@@ -1,48 +1,75 @@
-.userBlock{
-    display: flex;
-    padding: 10px;
-    color: #0e1218;
+.contentContainer {
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-.userBlock img {
-    margin-left: 48px;
-    margin-top: 48px;
-    border-radius: 50%;
-    width: 210px;
+.userBlock {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    border-radius: 25px;
+    border: 1px solid #d7dadd;
+    padding-top: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+    padding-left: 60px;
 }
+
 .avatar {
-
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    min-height: 200px;
 }
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
 .descriptionBlock {
-    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
 
 }
-.userStatus{
-    display: flex;
-    margin-top: 48px;
+.userLookingJob {
     border-radius: 4px;
     background: #f9d442;
     margin-bottom: 25px;
+    padding: 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #0e1218;
+    text-align: center;
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
     text-transform: uppercase;
 }
-.userName{
-    display: flex;
+
+.userName {
+    color: #000000;
     font-size: 64px;
+    line-height: 64px;
     font-weight: 600;
+    margin-bottom: 20px;
 }
-.userLookingJob {
-    display: flex;
-    margin-top: 25px;
+
+.userStatus {
     color: #6d9985;
     font-size: 24px;
     line-height: 24px;
     font-weight: 600;
     margin-bottom: 20px;
 }
+
 .userList {
     display: flex;
     align-items: center;
@@ -51,9 +78,11 @@
     flex-wrap: wrap;
     row-gap: 10px;
 }
+
 .userListItem {
     position: relative;
 }
+
 .userListItem:not(:last-child)::before {
     content: "";
     background: #7d838c;
@@ -66,12 +95,14 @@
     transform: translateY(-50%);
     border-radius: 100%;
 }
-.userText{
+
+.userText {
     color: #7d838c;
     font-size: 14px;
     line-height: 20px;
     font-weight: 500;
 }
+
 .userSection {
     display: flex;
     justify-content: space-between;
@@ -82,14 +113,17 @@
     row-gap: 20px;
 
 }
+
 .userSocial {
     display: flex;
     align-items: center;
     gap: 8px;
 }
+
 .userSocialItem {
 
 }
+
 .userSocialLink {
     display: flex;
     align-items: center;
@@ -103,4 +137,37 @@
 
 .userSocialLink:hover {
     background-color: #6d9985;
+}
+
+.buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.buttonLink {
+    border: 1px solid #d7dadd;
+    color: #0e1218;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 14px 24px;
+    gap: 8px;
+    transition: background .3s, color .3s, border .3s;
+}
+.buttonLink:hover {
+    background: #0e1218;
+    color: #fff;
+    border: 1px solid #0e1218;
 }
