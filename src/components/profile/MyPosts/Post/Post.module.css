@@ -1,30 +1,32 @@
+.postContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 .postItems {
-    max-width: 1210px;
-    margin: 0 auto;
-    padding: 0 15px;
     border-radius: 25px;
     background-color: #eef2f6;
     position: relative;
-    padding-top: 60px;
-    padding-right: 60px;
-    padding-bottom: 60px;
-    padding-left: 60px;
+    padding: 60px;
     margin-top: 25px;
-    border: 1px solid red;
 }
 .postItem {
     display: flex;
     align-items: flex-start;
     position: relative;
     gap: 20px;
-    border: 1px solid red;
 }
 .postItemTitle {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: 25px;
     margin-bottom: 25px;
     position: relative;
+    width: 100%;
 }
 .postItemTitleLink {
     width: 80px;
@@ -78,5 +80,93 @@
     position: absolute;
     top: -8px;
     right: -8px;
-    cursor: pointer;
+    cursor: not-allowed;
+}
+.postItemContent {
+    display: flex;
+    margin-bottom: 25px;
+}
+.postItemContentText {
+    color: #0e1218;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+}
+.postItemInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #d7dadd;
+    gap: 25px;
+    row-gap: 10px;
+}
+.postItemInfoBox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.postItemInfoBoxList {
+    align-items: center;
+    display: flex;
+}
+.postItemInfoBoxListItem {
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    margin-left: -10px;
+}
+.postItemInfoBoxListItem:nth-child(1) {
+    margin-left: unset;
+}
+.postItemInfoBoxListLink {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+.postItemInfoBoxListText {
+    color: #0e1218;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    background: #ff99c0;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+.postItemInfoBoxListImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+.postItemInfoBoxText {
+    color: #7d838c;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+.postItemInfoText {
+    color: #7d838c;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+.postItemsBox {
+    display: flex;
+    gap: 25px;
+}
+.postItemsBoxLike {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6d9985;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
 }

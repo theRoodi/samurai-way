@@ -1,13 +1,13 @@
 import React from 'react';
-import {RootStateType} from '../../../state/state';
+import {AppStateType} from '../../../redux/redux-store';
 import {addPost} from '../../../state/profileReducer';
 import {MyPosts} from './MyPosts';
 import {connect} from 'react-redux';
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        newPostText: ''
     }
 }
 export const MyPostsContainer = connect(mapStateToProps, {addPost})(MyPosts)

@@ -13,9 +13,6 @@ export const Header = (props: any) => {
     // @ts-ignore
     const {userId} = useParams()
 
-    console.log(userId)
-    console.log(currentUserId)
-
 
     return (
         <header className={style.header}>

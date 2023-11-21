@@ -69,16 +69,18 @@ export class UsersContainer extends React.Component<any, any> {
         return <>
             {this.props.isFetching
                 ? <Preloader/>
-                : <Users totalUsersCount={this.props.totalUsersCount}
-                         pageSize={this.props.pageSize}
-                         onPageChange={this.onPageChange}
-                         usersPage={this.props.usersPage}
-                         unfollow={this.props.unfollow}
-                         follow={this.props.follow}
-                         currentPage={this.props.currentPage}
-                         isFetching={this.props.isFetching}
-                         isFollowing={this.props.isFollowing}
-                         setFollowing={this.props.setFollowing}/>}
+                :
+                // : <Users totalUsersCount={this.props.totalUsersCount}
+                //          pageSize={this.props.pageSize}
+                //          onPageChange={this.onPageChange}
+                //          usersPage={this.props.usersPage}
+                //          unfollow={this.props.unfollow}
+                //          follow={this.props.follow}
+                //          currentPage={this.props.currentPage}
+                //          isFetching={this.props.isFetching}
+                //          isFollowing={this.props.isFollowing}
+                //          setFollowing={this.props.setFollowing}/>}
+                ''}
         </>
     }
 }

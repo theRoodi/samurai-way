@@ -9,11 +9,11 @@
     align-items: center;
     padding-bottom: 40px;
     margin-bottom: 25px;
-    border-bottom: 1px solid #4b515a;
     gap: 25px;
     flex-wrap: wrap;
     row-gap: 15px;
     border-bottom: 1px solid #d7dadd;
+    user-select: none;
 }
 
 .userTab {
@@ -28,10 +28,12 @@
     gap: 8px;
     transition: color .3s;
 }
+
 .userTab:hover,
 .userTabActive {
     color: #0e1218;
 }
+
 .userTab span {
     background: #eef2f6;
     color: #7d838c;
@@ -52,4 +54,75 @@
     padding: 1px 12px;
     min-width: 32px;
     transition: background .3s, color .3s;
+}
+
+
+.inputForm {
+
+}
+
+.inputFormComment {
+    padding: 60px;
+    border-radius: 25px;
+    background: #eef2f6;
+}
+
+.inputFormTitle {
+    color: #0e1218;
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    user-select: none;
+}
+
+.inputFormBox {
+    user-select: none;
+}
+
+.inputFormTextarea {
+    margin-bottom: 25px;
+    border-radius: 10px;
+    width: 100%;
+    padding: 16px 40px 16px 24px;
+    background: unset;
+    resize: unset;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    min-height: 100px;
+    color: #0e1218;
+    border: 1px solid #d7dadd;
+}
+
+.inputFormAttach {
+    cursor: not-allowed;
+    display: block;
+    position: relative;
+    margin-bottom: 30px;
+    color: #afafaf;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    user-select: none;
+}
+
+.inputFormBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+    background: #9981c2;
+    cursor: pointer;
+    border: none;
+    padding-top: 15px;
+    padding-right: 24px;
+    padding-bottom: 15px;
+    padding-left: 24px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 20px;
+    transition: background .3s;
 }
