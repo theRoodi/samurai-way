@@ -26,6 +26,7 @@ export const ProfileInfo = (props: PropsType) => {
                 <div className={style.avatar}>
                     <img className={style.img}
                          src={props.profile.photos.small !== null ? props.profile.photos.small : avatar} alt=""/>
+                    <span className={style.avatarStatus}></span>
                 </div>
                 <div className={style.descriptionBlock}>
                     <p className={style.userLookingJob}>

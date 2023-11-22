@@ -45,6 +45,23 @@
     justify-content: center;
     align-items: center;
 }
+.headerNavLink span {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #ff99c0;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0e1218;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 600;
+}
+
 .userBlock {
     display: flex;
     align-items: center;
@@ -77,5 +94,8 @@
     margin-left: 5px;
 }
 .btnOut{
+    background-color: white;
     margin-left: 10px;
+    border: none;
+    cursor: pointer;
 }

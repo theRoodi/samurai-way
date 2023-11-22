@@ -17,11 +17,23 @@
 }
 
 .avatar {
+    position: relative;
     border-radius: 100%;
     width: 200px;
     height: 200px;
     min-width: 200px;
     min-height: 200px;
+}
+.avatarStatus{
+    width: 20px;
+    height: 20px;
+    background: #05bd00;
+    position: absolute;
+    top: 19px;
+    right: 19px;
+    display: block;
+    border-radius: 100%;
+    border: 4px solid #fff;
 }
 
 .img {

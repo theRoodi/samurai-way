@@ -19,6 +19,7 @@ export const Post = (props: PropsType) => {
                     <div className={style.postItemTitle}>
                         <a className={style.postItemTitleLink} href="#">
                             <img className={style.postItemTitleImg} src={props.profile?.photos.small} alt="avatar"/>
+                            <span className={style.postItemTitleImgStatus}></span>
                         </a>
                         <div className={style.postItemTitleBox}>
                             <p className={style.postItemTitleName}>

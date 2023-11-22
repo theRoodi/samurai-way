@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Header.module.css'
 import {NavLink, useParams} from 'react-router-dom';
-import {Bell, ChevronDown, MessageCircle, Search} from 'lucide-react';
+import {Bell, ChevronDown, MessageCircle, Power, Search} from 'lucide-react';
 import {useSelector} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import logo from '../../assets/images/logo.svg'
@@ -26,9 +26,11 @@ export const Header = (props: any) => {
                         <div className={style.iconGroup}>
                             <a className={style.headerNavLink} href="#">
                                 <MessageCircle size={25} color={'#000'}/>
+                                <span>1</span>
                             </a>
                             <a className={style.headerNavLink} href="#">
                                 <Bell size={25} color={'#000'}/>
+                                <span>7</span>
                             </a>
                         </div>
                     </div>
@@ -42,7 +44,7 @@ export const Header = (props: any) => {
                                     <div className={style.headerUserBlock}>
                                         {props.login}
                                         <ChevronDown size={10} className={style.arrowDown}/>
-                                        <button className={style.btnOut} onClick={props.logout}>Logout</button>
+                                        <button className={style.btnOut} onClick={props.logout}><Power size={25} /></button>
                                     </div>
                                 </>
                                 : <NavLink to={'/login'}>Login</NavLink>
