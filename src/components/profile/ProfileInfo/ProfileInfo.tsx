@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './ProfileInfo.module.css'
 import {Preloader} from '../../common/Preloader/Preloader';
-import {ProfileType} from '../../../state/profileReducer';
+import {ProfilePhotoType, ProfileType} from '../../../state/profileReducer';
 import avatar from '../../../assets/images/defaultAvatar.png';
 import {ProfileStatusHooks} from '../ProfileStatus/ProfileStatusHooks';
 import {Github, Globe, Heart, Mail, MailPlus, Send, Twitter} from 'lucide-react';
@@ -11,11 +11,19 @@ export type PropsType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
+    isOwner: boolean
+    savePhoto: (photo: ProfilePhotoType) => void
 }
 export const ProfileInfo = (props: PropsType) => {
 
     // @ts-ignore
     const {userId} = useParams()
+
+    const onChangePhoto = (e: any) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
 
     if (!props.profile) {
         return <Preloader/>
@@ -25,7 +33,8 @@ export const ProfileInfo = (props: PropsType) => {
             <div className={style.userBlock}>
                 <div className={style.avatar}>
                     <img className={style.img}
-                         src={props.profile.photos.small !== null ? props.profile.photos.small : avatar} alt=""/>
+                         src={props.profile.photos.large || avatar} alt=""/>
+                    {props.isOwner && <input type="file" onChange={onChangePhoto}/>}
                     <span className={style.avatarStatus}></span>
                 </div>
                 <div className={style.descriptionBlock}>

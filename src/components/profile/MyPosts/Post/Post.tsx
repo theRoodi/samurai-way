@@ -1,10 +1,10 @@
 import React from 'react';
 import style from './Post.module.css'
-import avatar from '../../../../assets/images/avatar.svg'
 import avatar2 from '../../../../assets/images/avatar2.svg'
 import avatar3 from '../../../../assets/images/avatar3.svg'
 import {MessagesSquare, ThumbsUp, Trash2} from 'lucide-react';
 import {ProfileType} from '../../../../state/profileReducer';
+import avatar from '../../../../assets/images/defaultAvatar.png'
 
 type PropsType = {
     message: string
@@ -18,7 +18,7 @@ export const Post = (props: PropsType) => {
                 <div className={style.postItem}>
                     <div className={style.postItemTitle}>
                         <a className={style.postItemTitleLink} href="#">
-                            <img className={style.postItemTitleImg} src={props.profile?.photos.small} alt="avatar"/>
+                            <img className={style.postItemTitleImg} src={props.profile?.photos.small || avatar} alt="avatar"/>
                             <span className={style.postItemTitleImgStatus}></span>
                         </a>
                         <div className={style.postItemTitleBox}>

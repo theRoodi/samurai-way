@@ -9,8 +9,10 @@ export const Profile = (props: PropsType) => {
         <div>
             <section className={style.userInfo}>
                 <ProfileInfo profile={props.profile}
+                             isOwner={props.isOwner}
                              status={props.status}
-                             updateStatus={props.updateStatus}/>
+                             updateStatus={props.updateStatus}
+                             savePhoto={props.savePhoto}/>
             </section>
             <section className={style.userContent}>
                 <MyPostsContainer/>
