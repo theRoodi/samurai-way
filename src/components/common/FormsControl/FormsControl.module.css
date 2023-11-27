@@ -16,3 +16,8 @@
     padding: 15px;
     color: #811212;
 }
+.loginBlock {
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 0 15px;
+}

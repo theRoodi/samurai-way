@@ -8,9 +8,17 @@ type FromDataType = {
     password: string
     rememberMe: boolean
 }
-export const LoginForm: React.FC<InjectedFormProps<FromDataType>> = ({handleSubmit, error}) => {
+type PropsLoginForm = {
+    captchaURL: string
+}
+export const LoginForm: React.FC<PropsLoginForm & InjectedFormProps<FromDataType, PropsLoginForm>> = ({
+                                                                                                          handleSubmit,
+                                                                                                          error,
+                                                                                                          captchaURL
+                                                                                                      }) => {
+    console.log(captchaURL + ' here ')
     return (
-        <div>
+        <div className={style.loginBlock}>
             <form onSubmit={handleSubmit}>
                 <div><Field placeholder={'Login'}
                             component={FormControl}
@@ -29,6 +37,15 @@ export const LoginForm: React.FC<InjectedFormProps<FromDataType>> = ({handleSubm
                             type="checkbox"
                             name="rememberMe"/>remember me
                 </div>
+
+                {captchaURL && <img src={captchaURL} alt="captcha"/>}
+                {captchaURL && <Field placeholder={'Captcha'}
+                                      component={FormControl}
+                                      child="input"
+                                      name="captcha"
+                                      type="captcha"
+                                      validate={[requiredFiled]}/>}
+
                 {error && <div className={style.formSummaryError}>
                     {error}
                 </div>}
@@ -39,6 +56,6 @@ export const LoginForm: React.FC<InjectedFormProps<FromDataType>> = ({handleSubm
         </div>
     )
 }
-export const ReduxLoginForm = reduxForm<FromDataType>({
+export const ReduxLoginForm: any = reduxForm<FromDataType, PropsLoginForm>({
     form: 'login'
 })(LoginForm)
