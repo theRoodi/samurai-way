@@ -2,6 +2,8 @@ import {PostType} from './state';
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
 import {profileAPI} from '../api/api';
+import {AppStateType} from '../redux/redux-store';
+import {stopSubmit} from 'redux-form';
 
 type ProfileContactType = {
     facebook: string
@@ -20,13 +22,12 @@ export type ProfilePhotoType = {
 }
 
 export type ProfileType = {
-    aboutMe: string
-    contacts: ProfileContactType
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
-    photos: ProfilePhotoType
+    photos: ProfilePhotoType;
+    aboutMe?: string | undefined;
+    contacts?: ProfileContactType | undefined;
+    lookingForAJob?: boolean | undefined;
+    lookingForAJobDescription?: string | undefined;
+    fullName?: string | undefined; userId?: number | undefined;
 }
 
 export type AddPostActionType = {
@@ -53,6 +54,10 @@ export type SetUserPhotoActionType = {
     type: 'profile/SET-USER-PHOTO'
     photos: ProfilePhotoType
 }
+export type UpdateUserActionType = {
+    type: 'profile/UPDATE-USER'
+    profile: ProfileType
+}
 
 export type ActionType =
     AddPostActionType
@@ -61,6 +66,7 @@ export type ActionType =
     | SetUserProfileActionType
     | SetUserStatusActionType
     | SetUserPhotoActionType
+    | UpdateUserActionType
 
 type InitialStateType = {
     posts: Array<PostType>
@@ -73,6 +79,7 @@ const DELETE_POST = 'profile/DELETE-POST'
 const SET_USER_PROFILE = 'profile/SET-USER-PROFILE'
 const SET_USER_STATUS = 'profile/SET-USER-STATUS'
 const SET_USER_PHOTO = 'profile/SET-USER-PHOTO'
+const UPDATE_USER = 'profile/UPDATE-USER'
 
 const initialState = {
     posts: [
@@ -103,8 +110,10 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
             return {...state, status: action.status};
         }
         case SET_USER_PHOTO: {
-            // @ts-ignore
             return {...state, profile: {...state.profile, photos: action.photos}};
+        }
+        case UPDATE_USER: {
+            return {...state, profile: action.profile}
         }
         default:
             return state
@@ -131,8 +140,8 @@ export const getProfile = (userId: number) => {
     return async (dispatch: Dispatch) => {
         const data = await profileAPI.getProfile(userId)
         dispatch(setUserProfile(data))
-
     }
+
 }
 export const getStatus = (userId: number) => {
     return async (dispatch: Dispatch) => {
@@ -155,6 +164,20 @@ export const savePhoto = (photo: string) => {
         const data = await profileAPI.savePhoto(photo)
         if (data.resultCode === 0) {
             dispatch(setUserPhoto(data.data.photos))
+        }
+
+    }
+}
+export const updateProfile = (profile: ProfileType) => {
+    return async (dispatch: Dispatch, getState: any) => {
+        const userId = getState().auth.userId
+        const data = await profileAPI.updateProfile(profile)
+        if (data.data.resultCode === 0) {
+            // @ts-ignore
+            dispatch(getProfile(userId))
+        } else {
+            dispatch(stopSubmit('edit-profile', {_error: data.data.messages[0]}))
+            return Promise.reject(data.data.messages[0])
         }
 
     }

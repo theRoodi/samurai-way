@@ -12,7 +12,8 @@ export const Profile = (props: PropsType) => {
                              isOwner={props.isOwner}
                              status={props.status}
                              updateStatus={props.updateStatus}
-                             savePhoto={props.savePhoto}/>
+                             savePhoto={props.savePhoto}
+                             saveProfile={props.saveProfile}/>
             </section>
             <section className={style.userContent}>
                 <MyPostsContainer/>

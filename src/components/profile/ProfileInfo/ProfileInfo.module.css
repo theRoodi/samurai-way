@@ -180,3 +180,12 @@
     color: #fff;
     border: 1px solid #0e1218;
 }
+
+.contacts {
+    padding: 5px;
+}
+
+.formSummaryError {
+    padding: 15px;
+    color: #d50000;
+}
