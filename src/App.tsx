@@ -1,7 +1,7 @@
 import React, {lazy} from 'react';
 import './App.css';
 import {Navbar} from './components/Navbar/Navbar';
-import {Route} from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
 import HeaderContainer from './components/Header/HeaderContainer';
@@ -17,8 +17,15 @@ const ProfileContainer = lazy(() => import('./components/Profile/ProfileContaine
 const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
 
 class App extends React.Component<any> {
+    handleErrors = (promise: any) => {
+        alert("ERROR")
+    }
     componentDidMount() {
         this.props.initializeApp()
+        window.addEventListener('unhandledrejection', this.handleErrors)
+    }
+    componentWillUnmount() {
+        window.addEventListener('unhandledrejection', this.handleErrors)
     }
 
     render() {

@@ -4,7 +4,7 @@ import {Preloader} from '../../common/Preloader/Preloader';
 import {ProfilePhotoType, ProfileType} from '../../../state/profileReducer';
 import avatar from '../../../assets/images/defaultAvatar.png';
 import {ProfileStatusHooks} from '../ProfileStatus/ProfileStatusHooks';
-import {Github, Globe, Heart, Mail, MailPlus, Send, Twitter} from 'lucide-react';
+import {Github, Globe, Heart, Mail, MailPlus, Pencil, PlusCircle, Save, Send, Twitter} from 'lucide-react';
 import {useParams} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
 import {FormControl} from '../../common/FormsControl';
@@ -42,7 +42,15 @@ export const ProfileInfo = (props: PropsType) => {
                 <div className={style.avatar}>
                     <img className={style.img}
                          src={props.profile.photos.large || avatar} alt=""/>
-                    {props.isOwner && <input type="file" onChange={onChangePhoto}/>}
+                    {props.isOwner && <div className={style.photoContainer}>
+                        <label className={style.fileLabel}>
+                            <input type="file"
+                                   onChange={onChangePhoto}
+                                   className={style.hiddenInput}/>
+                            <PlusCircle size={20}/>
+                        </label>
+                    </div>}
+
                     <span className={style.avatarStatus}></span>
                 </div>
                 {editMode
@@ -80,8 +88,8 @@ const ProfileData = (props: ProfileDataType) => {
     return (
 
         <div className={style.descriptionBlock}>
-            {props.isOwner && <div>
-                <button onClick={props.toggleEditMode}>Edit info</button>
+            {props.isOwner && <div className={style.editBtnContainer}>
+                <button className={style.editBtn} onClick={props.toggleEditMode}><Pencil size={20}/></button>
             </div>}
             <p className={style.userLookingJob}>
                 {props.profile.lookingForAJobDescription}
@@ -155,8 +163,8 @@ const ProfileData = (props: ProfileDataType) => {
 const ProfileDataForm: any = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
-                <button>save</button>
+            <div className={style.editBtnContainer}>
+                <button className={style.editBtn}><Save size={20}/></button>
             </div>
             {props.error && <div className={style.formSummaryError}>
                 {props.error}
@@ -193,7 +201,7 @@ const ProfileDataForm: any = (props: any) => {
                            validate={[requiredFiled]}/>
                 </div>
                 <div><b>Contacts: </b>
-                    {Object.keys(props.profile.contacts ).map(key => {
+                    {Object.keys(props.profile.contacts).map(key => {
                         return <div key={key} className={style.contacts}>
                             <b>{key}: </b>
                             <Field placeholder={key}

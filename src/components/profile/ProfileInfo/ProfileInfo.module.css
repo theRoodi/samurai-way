@@ -21,7 +21,8 @@
     min-width: 200px;
     min-height: 200px;
 }
-.avatarStatus{
+
+.avatarStatus {
     width: 20px;
     height: 20px;
     background: #05bd00;
@@ -47,6 +48,7 @@
     width: 100%;
 
 }
+
 .userLookingJob {
     border-radius: 4px;
     background: #f9d442;
@@ -154,6 +156,7 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
 .buttonLink {
     border: 1px solid #d7dadd;
     color: #0e1218;
@@ -175,6 +178,7 @@
     gap: 8px;
     transition: background .3s, color .3s, border .3s;
 }
+
 .buttonLink:hover {
     background: #0e1218;
     color: #fff;
@@ -188,4 +192,45 @@
 .formSummaryError {
     padding: 15px;
     color: #d50000;
+}
+
+.editBtnContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.editBtn {
+    outline: none;
+    border: none;
+    background-color: white;
+    opacity: .3;
+}
+
+.editBtn:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.photoContainer {
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 200px;
+    right: 90px;
+    opacity: .3;
+}
+.photoContainer:hover {
+    opacity: 1;
+}
+
+.hiddenInput {
+    display: none;
+}
+
+.fileLabel {
+    cursor: pointer;
+    display: inline-block;
 }
